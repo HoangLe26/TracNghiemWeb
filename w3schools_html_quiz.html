@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W3Schools HTML Full Quiz Practice</title>
+    <style>
+        :root {
+            --primary-color: #04AA6D;
+            --primary-hover: #059862;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --correct-bg: #d4edda;
+            --correct-border: #28a745;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-border: #dc3545;
+            --wrong-text: #721c24;
+            --selected-bg: #e2e6ea;
+            --selected-border: #adb5bd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #282a35;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            max-width: 800px;
+            margin: 10px auto 0 auto;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--primary-color);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .tracker-text {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: #ddd;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .dashboard {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            display: none;
+            border: 2px solid var(--primary-color);
+        }
+
+        .dashboard h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+            border: 5px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px auto;
+            color: var(--text-color);
+        }
+
+        .quiz-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .question-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .question-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .option-label:hover {
+            background-color: #f1f3f5;
+            border-color: #ced4da;
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* State updates when checked */
+        .option-label.selected-active {
+            background-color: #e9ecef;
+            border-color: var(--selected-border);
+        }
+
+        /* Post-Submission Result Styles */
+        .question-card.evaluated {
+            pointer-events: none;
+        }
+
+        .option-label.correct-answer {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--correct-border) !important;
+            color: var(--correct-text) !important;
+            font-weight: 600;
+        }
+
+        .option-label.wrong-answer {
+            background-color: var(--wrong-bg) !important;
+            border-color: var(--wrong-border) !important;
+            color: var(--wrong-text) !important;
+        }
+
+        .feedback-text {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: none;
+        }
+        .feedback-text.correct {
+            color: var(--correct-border);
+            display: block;
+        }
+        .feedback-text.wrong {
+            color: var(--wrong-border);
+            display: block;
+        }
+
+        .submit-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn-action {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-action:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-action:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-action.btn-shuffle {
+            background-color: #2196F3;
+        }
+
+        .btn-action.btn-shuffle:hover {
+            background-color: #0b7dda;
+        }
+
+        footer.page-footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            background-color: #ffffff;
+            margin-top: 5px;
+        }
+
+        code {
+            background-color: #f1f3f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #d63384;
+        }
+        
+        .question-title code {
+            color: #111;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>W3Schools HTML Complete Quiz Practice</h1>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="tracker-text" id="tracker-text">Answered: 0 / 40</div>
+</header>
+
+<main>
+    <div class="dashboard" id="dashboard">
+        <h2>Quiz Results</h2>
+        <div class="score-circle" id="score-circle">0%</div>
+        <p id="score-summary">You scored 0 out of 40.</p>
+        <button class="btn-action" onclick="window.location.reload();">Restart Quiz</button>
+    </div>
+
+    <form id="quiz-form" class="quiz-form" onsubmit="event.preventDefault();">
+        <!-- Questions injected via JavaScript -->
+    </form>
+
+    <div class="submit-container" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <button type="button" id="shuffle-btn" class="btn-action btn-shuffle" onclick="shuffleQuiz()">Tráo câu</button>
+        <button type="button" id="submit-btn" class="btn-action" onclick="submitQuiz()">Submit Answers</button>
+    </div>
+</main>
+
+<footer class="page-footer">
+    HTML Comprehensive Review Practice Tool • Derived from W3Schools Quiz Dataset
+</footer>
+
+<script>
+    const questions = [
+        {
+            q: "What does HTML stand for?",
+            o: ["Hyper Text Markup Language", "Home Tool Markup Language", "Hyperlinks and Text Markup Language"],
+            a: 0
+        },
+        {
+            q: "Who is making the Web standards?",
+            o: ["The World Wide Web Consortium (W3C)", "Google", "Microsoft", "Mozilla"],
+            a: 0
+        },
+        {
+            q: "Choose the correct HTML element for the largest heading:",
+            o: ["&lt;heading&gt;", "&lt;h6&gt;", "&lt;h1&gt;", "&lt;head&gt;"],
+            a: 2
+        },
+        {
+            q: "What is the correct HTML element for inserting a line break?",
+            o: ["&lt;break&gt;", "&lt;br&gt;", "&lt;lb&gt;"],
+            a: 1
+        },
+        {
+            q: "What is the correct HTML for adding a background color?",
+            o: ['&lt;body bg="yellow"&gt;', '&lt;body style="background-color:yellow;"&gt;', '&lt;background&gt;yellow&lt;/background&gt;'],
+            a: 1
+        },
+        {
+            q: "Choose the correct HTML element to define important text:",
+            o: ["&lt;important&gt;", "&lt;i&gt;", "&lt;strong&gt;", "&lt;bold&gt;"],
+            a: 2
+        },
+        {
+            q: "Choose the correct HTML element to define emphasized text:",
+            o: ["&lt;em&gt;", "&lt;italic&gt;", "&lt;i&gt;"],
+            a: 0
+        },
+        {
+            q: "What is the correct HTML for creating a hyperlink?",
+            o: ['&lt;a href="http://www.w3schools.com"&gt;W3Schools&lt;/a&gt;', '&lt;a&gt;http://www.w3schools.com&lt;/a&gt;', '&lt;a url="http://www.w3schools.com"&gt;W3Schools.com&lt;/a&gt;', '&lt;a name="http://www.w3schools.com"&gt;W3Schools.com&lt;/a&gt;'],
+            a: 0
+        },
+        {
+            q: "Which character is used to indicate an end tag?",
+            o: ["*", "^", "&lt;", "/"],
+            a: 3
+        },
+        {
+            q: "How can you open a link in a new tab/browser window?",
+            o: ['&lt;a href="url" target="new"&gt;', '&lt;a href="url" new&gt;', '&lt;a href="url" target="_blank"&gt;'],
+            a: 2
+        },
+        {
+            q: "Which of these elements are all &lt;table&gt; elements?",
+            o: ["&lt;table&gt; &lt;head&gt; &lt;tfoot&gt;", "&lt;table&gt; &lt;tr&gt; &lt;td&gt;", "&lt;thead&gt; &lt;body&gt; &lt;tr&gt;", "&lt;table&gt; &lt;tr&gt; &lt;tt&gt;"],
+            a: 1
+        },
+        {
+            q: "Inline elements are normally displayed without starting a new line.",
+            o: ["True", "False"],
+            a: 0
+        },
+        {
+            q: "How can you make a numbered list?",
+            o: ["&lt;ul&gt;", "&lt;list&gt;", "&lt;ol&gt;", "&lt;dl&gt;"],
+            a: 2
+        },
+        {
+            q: "How can you make a bulleted list?",
+            o: ["&lt;ol&gt;", "&lt;ul&gt;", "&lt;list&gt;", "&lt;dl&gt;"],
+            a: 1
+        },
+        {
+            q: "What is the correct HTML for making a checkbox?",
+            o: ['&lt;input type="check"&gt;', '&lt;checkbox&gt;', '&lt;input type="checkbox"&gt;', '&lt;check&gt;'],
+            a: 2
+        },
+        {
+            q: "What is the correct HTML for making a text input field?",
+            o: ['&lt;input type="textfield"&gt;', '&lt;textinput&gt;', '&lt;input type="text"&gt;', '&lt;input type="string"&gt;'],
+            a: 2
+        },
+        {
+            q: "What is the correct HTML for making a drop-down list?",
+            o: ['&lt;input type="dropdown"&gt;', '&lt;select&gt;', '&lt;list&gt;', '&lt;dropdown&gt;'],
+            a: 1
+        },
+        {
+            q: "What is the correct HTML for making a text area?",
+            o: ['&lt;input type="textarea"&gt;', '&lt;textarea&gt;', '&lt;textbox&gt;'],
+            a: 1
+        },
+        {
+            q: "What is the correct HTML for inserting an image?",
+            o: ['&lt;img href="image.gif" alt="MyImage"&gt;', '&lt;img src="image.gif" alt="MyImage"&gt;', '&lt;image src="image.gif" alt="MyImage"&gt;', '&lt;img&gt;image.gif&lt;/img&gt;'],
+            a: 1
+        },
+        {
+            q: "What is the correct HTML for inserting a background image?",
+            o: ['&lt;body style="background-image:url(background.gif)"&gt;', '&lt;background source="background.gif"&gt;', '&lt;body bg="background.gif"&gt;'],
+            a: 0
+        },
+        {
+            q: "An &lt;iframe&gt; is used to display a web page within a web page.",
+            o: ["True", "False"],
+            a: 0
+        },
+        {
+            q: "HTML comments start with &lt;!-- and end with --&gt;",
+            o: ["True", "False"],
+            a: 0
+        },
+        {
+            q: "Block elements are normally displayed without starting a new line.",
+            o: ["True", "False"],
+            a: 1
+        },
+        {
+            q: "Which HTML element defines the title of a document?",
+            o: ["&lt;meta&gt;", "&lt;head&gt;", "&lt;title&gt;"],
+            a: 2
+        },
+        {
+            q: "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+            o: ["alt", "title", "src", "longdesc"],
+            a: 0
+        },
+        {
+            q: "Which doctype is correct for HTML5?",
+            o: ["&lt;!DOCTYPE HTML5&gt;", "&lt;!DOCTYPE html&gt;", "&lt;DOCTYPE html&gt;"],
+            a: 1
+        },
+        {
+            q: "Which HTML element is used to specify a footer for a document or section?",
+            o: ["&lt;section&gt;", "&lt;footer&gt;", "&lt;bottom&gt;", '&lt;id="footer"&gt;'],
+            a: 1
+        },
+        {
+            q: "In HTML, you can embed SVG elements directly into an HTML page.",
+            o: ["True", "False"],
+            a: 0
+        },
+        {
+            q: "What is the correct HTML element for playing video files?",
+            o: ["&lt;media&gt;", "&lt;video&gt;", "&lt;movie&gt;"],
+            a: 1
+        },
+        {
+            q: "What is the correct HTML element for playing audio files?",
+            o: ["&lt;audio&gt;", "&lt;sound&gt;", "&lt;music&gt;"],
+            a: 0
+        },
+        {
+            q: 'The HTML global attribute, "contenteditable" is used to:',
+            o: ["Specify whether the content of an element should be editable or not", "Specifies a context menu for an element", "Updates content from the server", "Specifies that the element is not relevant"],
+            a: 0
+        },
+        {
+            q: "In HTML, onblur and onfocus are:",
+            o: ["HTML elements", "Style attributes", "Event attributes"],
+            a: 2
+        },
+        {
+            q: "Graphics defined by SVG is in which format?",
+            o: ["HTML", "XML", "CSS"],
+            a: 1
+        },
+        {
+            q: "The HTML &lt;canvas&gt; element is used to:",
+            o: ["manipulate data", "create draggable elements", "draw graphics", "display database records"],
+            a: 2
+        },
+        {
+            q: "In HTML, which attribute is used to specify that an input field must be filled out?",
+            o: ["validate", "required", "placeholder", "name"],
+            a: 1
+        },
+        {
+            q: "Which input type defines a slider control?",
+            o: ["slider", "range", "controls", "number"],
+            a: 1
+        },
+        {
+            q: "Which HTML element is used to display a scalar measurement within a known range?",
+            o: ["&lt;meter&gt;", "&lt;gauge&gt;", "&lt;range&gt;", "&lt;measure&gt;"],
+            a: 0
+        },
+        {
+            q: "Which HTML element defines navigation links?",
+            o: ["&lt;nav&gt;", "&lt;navigation&gt;", "&lt;navigate&gt;"],
+            a: 0
+        },
+        {
+            q: "In HTML, what does the &lt;aside&gt; element define?",
+            o: ["The sidebar of a webpage", "Content aside from the page content", "A navigation menu"],
+            a: 1
+        },
+        {
+            q: "Which HTML element is used to specify a header for a document or section?",
+            o: ["&lt;top&gt;", "&lt;header&gt;", "&lt;head&gt;", "&lt;section&gt;"],
+            a: 1
+        }
+    ];
+
+    const form = document.getElementById('quiz-form');
+
+    // Render all questions dynamically
+    function initQuiz() {
+        questions.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.id = `q-card-${index}`;
+
+            const title = document.createElement('h3');
+            title.className = 'question-title';
+            title.innerHTML = `${index + 1}. ${item.q}`;
+            card.appendChild(title);
+
+            const optionsList = document.createElement('div');
+            optionsList.className = 'options-list';
+
+            item.o.forEach((opt, oIdx) => {
+                const label = document.createElement('label');
+                label.className = 'option-label';
+                label.id = `label-${index}-${oIdx}`;
+
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `question-${index}`;
+                radio.value = oIdx;
+                radio.onclick = () => updateProgress(index, oIdx);
+
+                const textSpan = document.createElement('span');
+                textSpan.innerHTML = opt;
+
+                label.appendChild(radio);
+                label.appendChild(textSpan);
+                optionsList.appendChild(label);
+            });
+
+            card.appendChild(optionsList);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback-text';
+            feedback.id = `feedback-${index}`;
+            card.appendChild(feedback);
+
+            form.appendChild(card);
+        });
+    }
+
+    // Keep track of which questions have been answered to update the active styles and top navbar trackers
+    const answeredTracker = new Set();
+
+    function updateProgress(qIdx, oIdx) {
+        answeredTracker.add(qIdx);
+        
+        // Remove active class from all other choices in the same question card
+        questions[qIdx].o.forEach((_, idx) => {
+            document.getElementById(`label-${qIdx}-${idx}`).classList.remove('selected-active');
+        });
+        
+        // Add active style to the clicked choice
+        document.getElementById(`label-${qIdx}-${oIdx}`).classList.add('selected-active');
+
+        // Update progress bar UI
+        const count = answeredTracker.size;
+        const percent = (count / questions.length) * 100;
+        document.getElementById('progress-bar').style.width = `${percent}%`;
+        document.getElementById('tracker-text').innerText = `Answered: ${count} / ${questions.length}`;
+    }
+
+    // Evaluate answers at the end when the user triggers the submission
+    function submitQuiz() {
+        let score = 0;
+
+        // Loop over questions to evaluate correctness
+        questions.forEach((item, index) => {
+            const selectedCard = document.getElementById(`q-card-${index}`);
+            selectedCard.classList.add('evaluated');
+
+            const selectedRadio = document.querySelector(`input[name="question-${index}"]:checked`);
+            const feedbackEl = document.getElementById(`feedback-${index}`);
+
+            const userAns = selectedRadio ? parseInt(selectedRadio.value) : null;
+            const correctAns = item.a;
+
+            // Highlight correct answer in Green
+            document.getElementById(`label-${index}-${correctAns}`).classList.add('correct-answer');
+
+            if (userAns === correctAns) {
+                score++;
+                feedbackEl.innerText = "✓ Correct";
+                feedbackEl.className = "feedback-text correct";
+            } else {
+                if (userAns !== null) {
+                    // Highlight the wrong chosen element in Red
+                    document.getElementById(`label-${index}-${userAns}`).classList.add('wrong-answer');
+                }
+                feedbackEl.innerText = "✗ Incorrect";
+                feedbackEl.className = "feedback-text wrong";
+            }
+        });
+
+        // Calculate and show summary details at the top dashboard layout
+        const finalPercent = Math.round((score / questions.length) * 100);
+        
+        const dashboard = document.getElementById('dashboard');
+        dashboard.style.display = 'block';
+        document.getElementById('score-circle').innerText = `${finalPercent}%`;
+        document.getElementById('score-summary').innerText = `You answered ${score} out of ${questions.length} questions correctly.`;
+
+        // Scroll gracefully to the top to see performance details
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        // Disable submit button after completion
+        document.getElementById('submit-btn').disabled = true;
+    }
+
+    function shuffleQuiz() {
+        // Reset answeredTracker, progress bar, etc.
+        answeredTracker.clear();
+        document.getElementById('progress-bar').style.width = '0%';
+        document.getElementById('tracker-text').innerText = `Answered: 0 / ${questions.length}`;
+        
+        // Hide dashboard if it was shown
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('submit-btn').disabled = false;
+
+        // Shuffle questions
+        for (let i = questions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [questions[i], questions[j]] = [questions[j], questions[i]];
+        }
+
+        // Shuffle options and update answer index
+        questions.forEach(item => {
+            const correctText = item.o[item.a];
+            for (let i = item.o.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [item.o[i], item.o[j]] = [item.o[j], item.o[i]];
+            }
+            item.a = item.o.indexOf(correctText);
+        });
+
+        // Re-render questions
+        form.innerHTML = '';
+        initQuiz();
+    }
+
+    // Initialize application on load
+    initQuiz();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>W3Schools CSS Full Quiz Practice</title>
+    <style>
+        :root {
+            --primary-color: #04AA6D;
+            --primary-hover: #059862;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+            --text-muted: #6c757d;
+            --border-color: #dee2e6;
+            --correct-bg: #d4edda;
+            --correct-border: #28a745;
+            --correct-text: #155724;
+            --wrong-bg: #f8d7da;
+            --wrong-border: #dc3545;
+            --wrong-text: #721c24;
+            --selected-bg: #e2e6ea;
+            --selected-border: #adb5bd;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #282a35;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .progress-container {
+            max-width: 800px;
+            margin: 10px auto 0 auto;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            height: 12px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--primary-color);
+            width: 0%;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .tracker-text {
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: #ddd;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .dashboard {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+            display: none;
+            border: 2px solid var(--primary-color);
+        }
+
+        .dashboard h2 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: var(--bg-color);
+            border: 5px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 20px auto;
+            color: var(--text-color);
+        }
+
+        .quiz-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .question-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .question-title {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 18px;
+        }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+
+        .option-label:hover {
+            background-color: #f1f3f5;
+            border-color: #ced4da;
+        }
+
+        .option-label input[type="radio"] {
+            margin-right: 12px;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        /* State updates when checked */
+        .option-label.selected-active {
+            background-color: #e9ecef;
+            border-color: var(--selected-border);
+        }
+
+        /* Post-Submission Result Styles */
+        .question-card.evaluated {
+            pointer-events: none;
+        }
+
+        .option-label.correct-answer {
+            background-color: var(--correct-bg) !important;
+            border-color: var(--correct-border) !important;
+            color: var(--correct-text) !important;
+            font-weight: 600;
+        }
+
+        .option-label.wrong-answer {
+            background-color: var(--wrong-bg) !important;
+            border-color: var(--wrong-border) !important;
+            color: var(--wrong-text) !important;
+        }
+
+        .feedback-text {
+            margin-top: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            display: none;
+        }
+        .feedback-text.correct {
+            color: var(--correct-border);
+            display: block;
+        }
+        .feedback-text.wrong {
+            color: var(--wrong-border);
+            display: block;
+        }
+
+        .submit-container {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn-action {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-action:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-action:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+
+        .btn-action.btn-shuffle {
+            background-color: #2196F3;
+        }
+
+        .btn-action.btn-shuffle:hover {
+            background-color: #0b7dda;
+        }
+
+        footer.page-footer {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border-color);
+            background-color: #ffffff;
+            margin-top: 5px;
+        }
+
+        code {
+            background-color: #f1f3f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.95em;
+            color: #d63384;
+        }
+        
+        .question-title code {
+            color: #111;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>W3Schools CSS Complete Quiz Practice</h1>
+    <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="tracker-text" id="tracker-text">Answered: 0 / 25</div>
+</header>
+
+<main>
+    <div class="dashboard" id="dashboard">
+        <h2>Quiz Results</h2>
+        <div class="score-circle" id="score-circle">0%</div>
+        <p id="score-summary">You scored 0 out of 25.</p>
+        <button class="btn-action" onclick="window.location.reload();">Restart Quiz</button>
+    </div>
+
+    <form id="quiz-form" class="quiz-form" onsubmit="event.preventDefault();">
+        <!-- Questions injected via JavaScript -->
+    </form>
+
+    <div class="submit-container" style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <button type="button" id="shuffle-btn" class="btn-action btn-shuffle" onclick="shuffleQuiz()">Tráo câu</button>
+        <button type="button" id="submit-btn" class="btn-action" onclick="submitQuiz()">Submit Answers</button>
+    </div>
+</main>
+
+<footer class="page-footer">
+    CSS Comprehensive Review Practice Tool • Derived from W3Schools Quiz Dataset
+</footer>
+
+<script>
+    const questions = [
+        {
+            q: "What does CSS stand for?",
+            o: ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"],
+            a: 0
+        },
+        {
+            q: "What is the correct HTML for referring to an external style sheet?",
+            o: ['&lt;link rel="stylesheet" type="text/css" href="mystyle.css"&gt;', '&lt;style src="mystyle.css"&gt;', '&lt;stylesheet&gt;mystyle.css&lt;/stylesheet&gt;'],
+            a: 0
+        },
+        {
+            q: "Where in an HTML document is the correct place to refer to an external style sheet?",
+            o: ["In the &lt;body&gt; section", "In the &lt;head&gt; section", "At the end of the document"],
+            a: 1
+        },
+        {
+            q: "Which HTML tag is used to define an internal style sheet?",
+            o: ["&lt;css&gt;", "&lt;script&gt;", "&lt;style&gt;"],
+            a: 2
+        },
+        {
+            q: "Which HTML attribute is used to define inline styles?",
+            o: ["style", "class", "styles", "font"],
+            a: 0
+        },
+        {
+            q: "Which is the correct CSS syntax?",
+            o: ["body {color: black;}", "{body:color=black;}", "{body;color:black;}", "body:color=black;"],
+            a: 0
+        },
+        {
+            q: "How do you insert a comment in a CSS file?",
+            o: ["/* this is a comment */", "// this is a comment", "// this is a comment //", "' this is a comment"],
+            a: 0
+        },
+        {
+            q: "Which property is used to change the background color?",
+            o: ["color", "bgcolor", "background-color"],
+            a: 2
+        },
+        {
+            q: "How do you add a background color for all &lt;h1&gt; elements?",
+            o: ["h1 {background-color:#FFFFFF;}", "all.h1 {background-color:#FFFFFF;}", "h1.all {background-color:#FFFFFF;}"],
+            a: 0
+        },
+        {
+            q: "Which CSS property is used to change the text color of an element?",
+            o: ["fgcolor", "color", "text-color"],
+            a: 1
+        },
+        {
+            q: "Which CSS property controls the text size?",
+            o: ["text-size", "font-style", "text-style", "font-size"],
+            a: 3
+        },
+        {
+            q: "What is the correct CSS syntax for making all the &lt;p&gt; elements bold?",
+            o: ["p {text-size:bold;}", '&lt;p style="font-size:bold;"&gt;', "p {font-weight:bold;}", '&lt;p style="text-size:bold;"&gt;'],
+            a: 2
+        },
+        {
+            q: "How do you display hyperlinks without an underline?",
+            o: ["a {text-decoration:none;}", "a {decoration:no-underline;}", "a {underline:none;}", "a {text-decoration:no-underline;}"],
+            a: 0
+        },
+        {
+            q: "How do you make each word in a text start with a capital letter?",
+            o: ["text-style:capitalize", "text-transform:capitalize", "transform:capitalize", "You can't do that with CSS"],
+            a: 1
+        },
+        {
+            q: "Which property is used to change the font of an element?",
+            o: ["font-family", "font-weight", "font-style"],
+            a: 0
+        },
+        {
+            q: "How do you make the text bold?",
+            o: ["style:bold;", "font:bold;", "font-weight:bold;"],
+            a: 2
+        },
+        {
+            q: "How do you display a border like this: The top border = 10 pixels, the bottom border = 5 pixels, the left border = 20 pixels, and the right border = 1pixel?",
+            o: ["border-width:10px 1px 5px 20px;", "border-width:5px 20px 10px 1px;", "border-width:10px 5px 20px 1px;", "border-width:10px 20px 5px 1px;"],
+            a: 0
+        },
+        {
+            q: "Which property is used to change the left margin of an element?",
+            o: ["padding-left", "margin-left", "indent"],
+            a: 1
+        },
+        {
+            q: "When using the padding property; are you allowed to use negative values?",
+            o: ["Yes", "No"],
+            a: 1
+        },
+        {
+            q: "How do you make a list that lists its items with squares?",
+            o: ["list-style-type: square;", "list-type: square;", "list: square;"],
+            a: 0
+        },
+        {
+            q: 'How do you select an element with id "demo"?',
+            o: ["#demo", ".demo", "demo", "*demo"],
+            a: 0
+        },
+        {
+            q: 'How do you select elements with class name "test"?',
+            o: ["#test", ".test", "test", "*test"],
+            a: 1
+        },
+        {
+            q: "How do you select all p elements inside a div element?",
+            o: ["div p", "div + p", "div.p"],
+            a: 0
+        },
+        {
+            q: "How do you group selectors?",
+            o: ["Separate each selector with a plus sign", "Separate each selector with a space", "Separate each selector with a comma"],
+            a: 2
+        },
+        {
+            q: "What is the default value of the position property?",
+            o: ["relative", "fixed", "absolute", "static"],
+            a: 3
+        }
+    ];
+
+    const form = document.getElementById('quiz-form');
+
+    function initQuiz() {
+        questions.forEach((item, index) => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+            card.id = `q-card-${index}`;
+
+            const title = document.createElement('h3');
+            title.className = 'question-title';
+            title.innerHTML = `${index + 1}. ${item.q}`;
+            card.appendChild(title);
+
+            const optionsList = document.createElement('div');
+            optionsList.className = 'options-list';
+
+            item.o.forEach((opt, oIdx) => {
+                const label = document.createElement('label');
+                label.className = 'option-label';
+                label.id = `label-${index}-${oIdx}`;
+
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `question-${index}`;
+                radio.value = oIdx;
+                radio.onclick = () => updateProgress(index, oIdx);
+
+                const textSpan = document.createElement('span');
+                textSpan.innerHTML = opt;
+
+                label.appendChild(radio);
+                label.appendChild(textSpan);
+                optionsList.appendChild(label);
+            });
+
+            card.appendChild(optionsList);
+
+            const feedback = document.createElement('div');
+            feedback.className = 'feedback-text';
+            feedback.id = `feedback-${index}`;
+            card.appendChild(feedback);
+
+            form.appendChild(card);
+        });
+    }
+
+    const answeredTracker = new Set();
+
+    function updateProgress(qIdx, oIdx) {
+        answeredTracker.add(qIdx);
+        
+        questions[qIdx].o.forEach((_, idx) => {
+            document.getElementById(`label-${qIdx}-${idx}`).classList.remove('selected-active');
+        });
+        
+        document.getElementById(`label-${qIdx}-${oIdx}`).classList.add('selected-active');
+
+        const count = answeredTracker.size;
+        const percent = (count / questions.length) * 100;
+        document.getElementById('progress-bar').style.width = `${percent}%`;
+        document.getElementById('tracker-text').innerText = `Answered: ${count} / ${questions.length}`;
+    }
+
+    function submitQuiz() {
+        let score = 0;
+
+        questions.forEach((item, index) => {
+            const selectedCard = document.getElementById(`q-card-${index}`);
+            selectedCard.classList.add('evaluated');
+
+            const selectedRadio = document.querySelector(`input[name="question-${index}"]:checked`);
+            const feedbackEl = document.getElementById(`feedback-${index}`);
+
+            const userAns = selectedRadio ? parseInt(selectedRadio.value) : null;
+            const correctAns = item.a;
+
+            document.getElementById(`label-${index}-${correctAns}`).classList.add('correct-answer');
+
+            if (userAns === correctAns) {
+                score++;
+                feedbackEl.innerText = "✓ Correct";
+                feedbackEl.className = "feedback-text correct";
+            } else {
+                if (userAns !== null) {
+                    document.getElementById(`label-${index}-${userAns}`).classList.add('wrong-answer');
+                }
+                feedbackEl.innerText = "✗ Incorrect";
+                feedbackEl.className = "feedback-text wrong";
+            }
+        });
+
+        const finalPercent = Math.round((score / questions.length) * 100);
+        
+        const dashboard = document.getElementById('dashboard');
+        dashboard.style.display = 'block';
+        document.getElementById('score-circle').innerText = `${finalPercent}%`;
+        document.getElementById('score-summary').innerText = `You answered ${score} out of ${questions.length} questions correctly.`;
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        document.getElementById('submit-btn').disabled = true;
+    }
+
+    function shuffleQuiz() {
+        // Reset answeredTracker, progress bar, etc.
+        answeredTracker.clear();
+        document.getElementById('progress-bar').style.width = '0%';
+        document.getElementById('tracker-text').innerText = `Answered: 0 / ${questions.length}`;
+        
+        // Hide dashboard if it was shown
+        document.getElementById('dashboard').style.display = 'none';
+        document.getElementById('submit-btn').disabled = false;
+
+        // Shuffle questions
+        for (let i = questions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [questions[i], questions[j]] = [questions[j], questions[i]];
+        }
+
+        // Shuffle options and update answer index
+        questions.forEach(item => {
+            const correctText = item.o[item.a];
+            for (let i = item.o.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [item.o[i], item.o[j]] = [item.o[j], item.o[i]];
+            }
+            item.a = item.o.indexOf(correctText);
+        });
+
+        // Re-render questions
+        form.innerHTML = '';
+        initQuiz();
+    }
+
+    initQuiz();
+</script>
+
+</body>
+</html>
