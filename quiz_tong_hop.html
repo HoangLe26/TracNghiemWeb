@@ -1,0 +1,4162 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc Nghiệm Tổng Hợp - Ôn Tập Công Nghệ Web</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --bg-panel: rgba(17, 24, 39, 0.7);
+            --border-glow: rgba(99, 102, 241, 0.15);
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.5);
+            --primary-hover: #4f46e5;
+            --secondary: #a855f7;
+            --success: #10b981;
+            --success-glow: rgba(16, 185, 129, 0.2);
+            --danger: #f43f5e;
+            --danger-glow: rgba(244, 63, 94, 0.2);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --card-hover: rgba(30, 41, 59, 0.8);
+            
+            --tag-html: #ef4444;
+            --tag-css: #3b82f6;
+            --tag-js: #eab308;
+            --tag-bootstrap: #8b5cf6;
+            --tag-jquery: #06b6d4;
+            --tag-mysql: #f97316;
+            --tag-php: #a855f7;
+            --tag-xml: #10b981;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 10% 20%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+                radial-gradient(at 90% 10%, rgba(168, 85, 247, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 80%, rgba(16, 185, 129, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Ambient Glow Header */
+        header {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 20px 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-brand h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #a5b4fc 0%, #c084fc 50%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .header-brand p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Tracker and Progress bar */
+        .progress-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            width: 40%;
+        }
+
+        .progress-bar-outer {
+            flex-grow: 1;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-bar-inner {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            width: 0%;
+            border-radius: 5px;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .tracker-badge {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            white-space: nowrap;
+            letter-spacing: 0.5px;
+        }
+
+        /* Loading indicator & Data status badge */
+        .status-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .status-pill.fallback {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+            color: #fbbf24;
+        }
+
+        .status-pill.loading {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+        }
+
+        .dot-pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: currentColor;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Setup Screen */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .panel-glass {
+            background: var(--bg-panel);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-section p {
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .config-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .progress-box {
+                width: 100%;
+            }
+        }
+
+        .config-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 18px;
+            padding: 25px;
+        }
+
+        .config-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 10px;
+        }
+
+        /* Radio group for count selection */
+        .count-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .count-btn-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            font-weight: 600;
+        }
+
+        .count-btn-label:hover {
+            background: rgba(255, 255, 255, 0.06);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .count-btn-label input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text-muted);
+            border-radius: 50%;
+            outline: none;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.25s ease;
+        }
+
+        .count-btn-label input[type="radio"]:checked {
+            border-color: var(--primary);
+        }
+
+        .count-btn-label input[type="radio"]:checked::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .count-btn-label.active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.08);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.15);
+        }
+
+        /* Grid checkboxes for subjects */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px;
+        }
+
+        .subject-checkbox {
+            display: none;
+        }
+
+        .subject-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 700;
+            text-align: center;
+            position: relative;
+            user-select: none;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .subject-card .sub-badge {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 500;
+        }
+
+        .subject-checkbox:checked + .subject-card {
+            background: rgba(99, 102, 241, 0.1);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+            color: #ffffff;
+        }
+
+        /* Specific border colors for subject check states */
+        .subject-checkbox:checked + .subject-card.html { border-color: var(--tag-html); }
+        .subject-checkbox:checked + .subject-card.css { border-color: var(--tag-css); }
+        .subject-checkbox:checked + .subject-card.javascript { border-color: var(--tag-js); }
+        .subject-checkbox:checked + .subject-card.bootstrap { border-color: var(--tag-bootstrap); }
+        .subject-checkbox:checked + .subject-card.jquery { border-color: var(--tag-jquery); }
+        .subject-checkbox:checked + .subject-card.mysql { border-color: var(--tag-mysql); }
+        .subject-checkbox:checked + .subject-card.php { border-color: var(--tag-php); }
+        .subject-checkbox:checked + .subject-card.xml { border-color: var(--tag-xml); }
+
+        .btn-glow {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.5);
+            background: linear-gradient(135deg, var(--primary-hover) 0%, #9333ea 100%);
+        }
+
+        .btn-glow:active {
+            transform: translateY(1px);
+        }
+
+        .btn-glow:disabled {
+            background: #4b5563;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+            color: #9ca3af;
+        }
+
+        /* Quiz UI Layout */
+        .quiz-container {
+            display: none;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            grid-template-columns: 1fr 340px;
+            gap: 30px;
+        }
+
+        @media (max-width: 1024px) {
+            .quiz-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar-sticky {
+                position: static !important;
+            }
+        }
+
+        .quiz-form {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Question Cards styling */
+        .question-card {
+            background: var(--bg-panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .question-card:hover {
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .question-card.active-focus {
+            border-color: var(--primary-glow);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.5;
+        }
+
+        /* Code inside questions */
+        code {
+            background-color: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3px 6px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #f43f5e;
+            display: inline-block;
+        }
+
+        .question-title code {
+            color: #fbbf24;
+            font-weight: 600;
+        }
+
+        /* Subject badges */
+        .badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .badge.html { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+        .badge.css { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+        .badge.js { background: rgba(234, 179, 8, 0.15); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.3); }
+        .badge.bootstrap { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
+        .badge.jquery { background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); }
+        .badge.mysql { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+        .badge.php { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.3); }
+        .badge.xml { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1.5px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.98rem;
+            position: relative;
+        }
+
+        .option-label:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .option-label input[type="radio"] {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            outline: none;
+            margin-right: 14px;
+            position: relative;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .option-label input[type="radio"]:checked {
+            border-color: var(--primary);
+        }
+
+        .option-label input[type="radio"]:checked::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Option selected active */
+        .option-label.selected-active {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.06);
+        }
+
+        /* Evaluated State */
+        .question-card.evaluated {
+            pointer-events: none;
+        }
+
+        .option-label.correct-answer {
+            background: rgba(16, 185, 129, 0.08) !important;
+            border-color: var(--success) !important;
+            color: #6ee7b7 !important;
+            font-weight: 600;
+        }
+
+        .option-label.wrong-answer {
+            background: rgba(244, 63, 94, 0.08) !important;
+            border-color: var(--danger) !important;
+            color: #fda4af !important;
+        }
+
+        .feedback-text {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: none;
+            padding: 8px 15px;
+            border-radius: 8px;
+        }
+
+        .feedback-text.correct {
+            display: block;
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+            border-left: 4px solid var(--success);
+        }
+
+        .feedback-text.wrong {
+            display: block;
+            color: #f43f5e;
+            background: rgba(244, 63, 94, 0.1);
+            border-left: 4px solid var(--danger);
+        }
+
+        /* Navigation Sidebar */
+        .sidebar-sticky {
+            position: sticky;
+            top: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .card-sidebar {
+            background: var(--bg-panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-sidebar h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #e2e8f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .sidebar-timer {
+            font-size: 1.4rem;
+            font-weight: 800;
+            font-family: monospace;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #38bdf8;
+            letter-spacing: 1px;
+        }
+
+        /* Question Grid navigation */
+        .q-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            padding-right: 5px;
+        }
+
+        /* Custom scrollbar for grid */
+        .q-grid::-webkit-scrollbar {
+            width: 4px;
+        }
+        .q-grid::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+
+        .q-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--text-muted);
+            border-radius: 8px;
+            aspect-ratio: 1;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .q-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+        }
+
+        .q-btn.answered {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
+        .q-btn.correct {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: var(--success);
+            color: #6ee7b7;
+        }
+
+        .q-btn.wrong {
+            background: rgba(244, 63, 94, 0.2);
+            border-color: var(--danger);
+            color: #fda4af;
+        }
+
+        /* Bottom Floating Bar on Mobile */
+        .actions-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn-sidebar {
+            width: 100%;
+            padding: 12px 20px;
+            font-weight: 700;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-sidebar.submit {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+        }
+
+        .btn-sidebar.submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+        }
+
+        .btn-sidebar.shuffle {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .btn-sidebar.shuffle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-sidebar.home {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-sidebar.home:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        /* Results dashboard */
+        .result-container {
+            display: none;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .score-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .score-circle-svg {
+            width: 180px;
+            height: 180px;
+            transform: rotate(-90deg);
+            position: relative;
+        }
+
+        .score-circle-svg circle {
+            fill: none;
+            stroke-width: 14;
+            stroke-linecap: round;
+        }
+
+        .score-circle-svg .circle-bg {
+            stroke: rgba(255, 255, 255, 0.04);
+        }
+
+        .score-circle-svg .circle-progress {
+            stroke: url(#scoreGradient);
+            stroke-dasharray: 502;
+            stroke-dashoffset: 502;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .score-text-overlay {
+            position: absolute;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            text-shadow: 0 0 10px rgba(99, 102, 241, 0.4);
+        }
+
+        .score-gauge-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .result-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            width: 100%;
+            margin: 25px 0;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-item span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-item strong {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        /* Subject Breakdown list */
+        .breakdown-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .subject-breakdown-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .breakdown-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .breakdown-row .subject-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .breakdown-row .score {
+            font-weight: 800;
+            font-family: monospace;
+            font-size: 1rem;
+        }
+
+        /* Filter Review Mode buttons */
+        .filter-review-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-filter {
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .btn-filter:hover {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .btn-filter.active {
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.25);
+        }
+
+        /* Page Footer styling */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            margin-top: 60px;
+            background: rgba(9, 13, 22, 0.9);
+        }
+
+        /* Custom notifications */
+        .notification-toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: rgba(17, 24, 39, 0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-left: 5px solid var(--primary);
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transform: translateY(150%);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .notification-toast.show {
+            transform: translateY(0);
+        }
+
+        .notification-toast p {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header containing progress controls -->
+    <header>
+        <div class="header-brand">
+            <h1><span>⚡</span> Trắc Nghiệm Tổng Hợp</h1>
+            <p>HTML, CSS, JS, Bootstrap, jQuery, MySQL, PHP, XML</p>
+        </div>
+
+        <div class="progress-box" id="header-progress" style="display: none;">
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner" id="progress-bar"></div>
+            </div>
+            <div class="tracker-badge" id="tracker-text">Tiến độ: 0/0</div>
+        </div>
+
+        <div id="data-status-badge" class="status-pill loading">
+            <span class="dot-pulse"></span>
+            <span id="data-status-text">Đang kết nối...</span>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <!-- Screen 1: Configuration Screen -->
+        <section id="setup-panel" class="panel-glass">
+            <div class="hero-section">
+                <h2>Cấu Hình Bài Trắc Nghiệm</h2>
+                <p>Hệ thống tự động liên kết dữ liệu từ 8 bộ đề gốc. Tùy chọn số lượng câu hỏi và chủ đề để bắt đầu luyện tập.</p>
+            </div>
+
+            <div class="config-grid">
+                <!-- Column 1: Number of questions -->
+                <div class="config-card">
+                    <h3><span>🎯</span> Số lượng câu hỏi</h3>
+                    <div class="count-options">
+                        <label class="count-btn-label active" onclick="selectCountOption(this)">
+                            <span>100 Câu hỏi</span>
+                            <input type="radio" name="count-select" value="100" checked>
+                        </label>
+                        <label class="count-btn-label" onclick="selectCountOption(this)">
+                            <span>150 Câu hỏi</span>
+                            <input type="radio" name="count-select" value="150">
+                        </label>
+                        <label class="count-btn-label" onclick="selectCountOption(this)">
+                            <span>Tất cả câu hỏi</span>
+                            <input type="radio" name="count-select" value="all">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Column 2: Subjects selection -->
+                <div class="config-card">
+                    <h3><span>📚</span> Lọc các chủ đề thi</h3>
+                    <div class="subject-grid" id="subject-selectors">
+                        <!-- Filled by script -->
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="start-btn" class="btn-glow" disabled onclick="startQuiz()">
+                <span>Bắt đầu ôn tập</span> ➔
+            </button>
+        </section>
+
+        <!-- Screen 2: Quiz Panel (Form) -->
+        <section id="quiz-panel" class="quiz-container">
+            <!-- Left col: Questions -->
+            <div>
+                <form id="quiz-form" class="quiz-form" onsubmit="event.preventDefault();">
+                    <!-- Dynamic rendering of cards -->
+                </form>
+            </div>
+
+            <!-- Right col: Sidebar panel -->
+            <div class="sidebar-sticky">
+                <div class="card-sidebar">
+                    <h4>Thời gian làm bài</h4>
+                    <div class="sidebar-timer" id="timer-display">00:00:00</div>
+                </div>
+
+                <div class="card-sidebar">
+                    <h4>
+                        <span>Bản đồ câu hỏi</span>
+                        <span style="font-size: 0.8rem; font-weight: 500; opacity: 0.7;" id="map-counter">0/0</span>
+                    </h4>
+                    <div class="q-grid" id="question-nav-map">
+                        <!-- Dynamic grid -->
+                    </div>
+                </div>
+
+                <div class="actions-box">
+                    <button type="button" class="btn-sidebar submit" onclick="submitQuiz()">
+                        <span>📥</span> Nộp bài thi
+                    </button>
+                    <button type="button" class="btn-sidebar shuffle" onclick="shuffleQuiz()">
+                        <span>🔀</span> Tráo đề ngẫu nhiên
+                    </button>
+                    <button type="button" class="btn-sidebar home" onclick="backToSetup()">
+                        <span>🏠</span> Cấu hình lại
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Screen 3: Results Dashboard -->
+        <section id="result-panel" class="panel-glass result-container">
+            <div class="score-box">
+                <h2 style="font-size: 1.8rem; font-weight: 800; color: #ffffff;">Kết Quả Làm Bài</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">Dưới đây là thống kê chi tiết bài làm của bạn</p>
+                
+                <div class="score-gauge-wrapper">
+                    <svg class="score-circle-svg">
+                        <defs>
+                            <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#818cf8" />
+                                <stop offset="100%" stop-color="#c084fc" />
+                            </linearGradient>
+                        </defs>
+                        <circle class="circle-bg" cx="90" cy="90" r="80"></circle>
+                        <circle class="circle-progress" id="svg-dash" cx="90" cy="90" r="80"></circle>
+                    </svg>
+                    <div class="score-text-overlay" id="score-percent">0%</div>
+                </div>
+
+                <div class="result-stats-grid">
+                    <div class="stat-item">
+                        <span>ĐÚNG</span>
+                        <strong id="stat-correct" style="color: #34d399;">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>TỔNG SỐ CÂU</span>
+                        <strong id="stat-total">0</strong>
+                    </div>
+                    <div class="stat-item">
+                        <span>THỜI GIAN</span>
+                        <strong id="stat-time" style="color: #38bdf8;">00:00</strong>
+                    </div>
+                </div>
+
+                <h3 class="breakdown-title">Phân tích theo chủ đề</h3>
+                <div class="subject-breakdown-list" id="subject-breakdown">
+                    <!-- Breakdown rows dynamic -->
+                </div>
+
+                <h3 class="breakdown-title">Xem lại câu hỏi</h3>
+                <div class="filter-review-box">
+                    <button class="btn-filter active" onclick="filterReview('all', this)">Tất cả</button>
+                    <button class="btn-filter" onclick="filterReview('correct', this)">Câu trả lời đúng</button>
+                    <button class="btn-filter" onclick="filterReview('wrong', this)">Câu trả lời sai / Chưa trả lời</button>
+                </div>
+                
+                <div style="display: flex; gap: 15px; width: 100%; justify-content: center; margin-top: 10px;">
+                    <button type="button" class="btn-glow" style="margin: 0;" onclick="restartQuizWithCurrentConfig()">
+                        <span>🔄</span> Làm lại đề này
+                    </button>
+                    <button type="button" class="btn-glow" style="margin: 0; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255,255,255,0.1); box-shadow: none;" onclick="backToSetup()">
+                        <span>🏠</span> Quay lại trang chủ
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Custom toast notification -->
+    <div id="toast-notify" class="notification-toast">
+        <span style="font-size: 1.2rem;">ℹ️</span>
+        <p id="toast-msg">Chào mừng bạn!</p>
+    </div>
+
+    <footer>
+        Trắc Nghiệm Tổng Hợp Ôn Tập Công Nghệ Web • 8 Bộ Đề HTML, CSS, JS, Bootstrap, jQuery, MySQL, PHP, XML
+    </footer>
+
+    <!-- EMBEDDED BACKUP QUIZ DATABASE -->
+    <script>
+        const FALLBACK_DB = [
+  {
+    "q": "What does HTML stand for?",
+    "o": [
+      "Hyper Text Markup Language",
+      "Home Tool Markup Language",
+      "Hyperlinks and Text Markup Language"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Who is making the Web standards?",
+    "o": [
+      "The World Wide Web Consortium (W3C)",
+      "Google",
+      "Microsoft",
+      "Mozilla"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Choose the correct HTML element for the largest heading:",
+    "o": [
+      "&lt;heading&gt;",
+      "&lt;h6&gt;",
+      "&lt;h1&gt;",
+      "&lt;head&gt;"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML element for inserting a line break?",
+    "o": [
+      "&lt;break&gt;",
+      "&lt;br&gt;",
+      "&lt;lb&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML for adding a background color?",
+    "o": [
+      "&lt;body bg=\"yellow\"&gt;",
+      "&lt;body style=\"background-color:yellow;\"&gt;",
+      "&lt;background&gt;yellow&lt;/background&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Choose the correct HTML element to define important text:",
+    "o": [
+      "&lt;important&gt;",
+      "&lt;i&gt;",
+      "&lt;strong&gt;",
+      "&lt;bold&gt;"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Choose the correct HTML element to define emphasized text:",
+    "o": [
+      "&lt;em&gt;",
+      "&lt;italic&gt;",
+      "&lt;i&gt;"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML for creating a hyperlink?",
+    "o": [
+      "&lt;a href=\"http://www.w3schools.com\"&gt;W3Schools&lt;/a&gt;",
+      "&lt;a&gt;http://www.w3schools.com&lt;/a&gt;",
+      "&lt;a url=\"http://www.w3schools.com\"&gt;W3Schools.com&lt;/a&gt;",
+      "&lt;a name=\"http://www.w3schools.com\"&gt;W3Schools.com&lt;/a&gt;"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which character is used to indicate an end tag?",
+    "o": [
+      "*",
+      "^",
+      "&lt;",
+      "/"
+    ],
+    "a": 3,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "How can you open a link in a new tab/browser window?",
+    "o": [
+      "&lt;a href=\"url\" target=\"new\"&gt;",
+      "&lt;a href=\"url\" new&gt;",
+      "&lt;a href=\"url\" target=\"_blank\"&gt;"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which of these elements are all &lt;table&gt; elements?",
+    "o": [
+      "&lt;table&gt; &lt;head&gt; &lt;tfoot&gt;",
+      "&lt;table&gt; &lt;tr&gt; &lt;td&gt;",
+      "&lt;thead&gt; &lt;body&gt; &lt;tr&gt;",
+      "&lt;table&gt; &lt;tr&gt; &lt;tt&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Inline elements are normally displayed without starting a new line.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "How can you make a numbered list?",
+    "o": [
+      "&lt;ul&gt;",
+      "&lt;list&gt;",
+      "&lt;ol&gt;",
+      "&lt;dl&gt;"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "How can you make a bulleted list?",
+    "o": [
+      "&lt;ol&gt;",
+      "&lt;ul&gt;",
+      "&lt;list&gt;",
+      "&lt;dl&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML for making a checkbox?",
+    "o": [
+      "&lt;input type=\"check\"&gt;",
+      "&lt;checkbox&gt;",
+      "&lt;input type=\"checkbox\"&gt;",
+      "&lt;check&gt;"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML for making a text input field?",
+    "o": [
+      "&lt;input type=\"textfield\"&gt;",
+      "&lt;textinput&gt;",
+      "&lt;input type=\"text\"&gt;",
+      "&lt;input type=\"string\"&gt;"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML for making a drop-down list?",
+    "o": [
+      "&lt;input type=\"dropdown\"&gt;",
+      "&lt;select&gt;",
+      "&lt;list&gt;",
+      "&lt;dropdown&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML for making a text area?",
+    "o": [
+      "&lt;input type=\"textarea\"&gt;",
+      "&lt;textarea&gt;",
+      "&lt;textbox&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML for inserting an image?",
+    "o": [
+      "&lt;img href=\"image.gif\" alt=\"MyImage\"&gt;",
+      "&lt;img src=\"image.gif\" alt=\"MyImage\"&gt;",
+      "&lt;image src=\"image.gif\" alt=\"MyImage\"&gt;",
+      "&lt;img&gt;image.gif&lt;/img&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML for inserting a background image?",
+    "o": [
+      "&lt;body style=\"background-image:url(background.gif)\"&gt;",
+      "&lt;background source=\"background.gif\"&gt;",
+      "&lt;body bg=\"background.gif\"&gt;"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "An &lt;iframe&gt; is used to display a web page within a web page.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "HTML comments start with &lt;!-- and end with --&gt;",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Block elements are normally displayed without starting a new line.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which HTML element defines the title of a document?",
+    "o": [
+      "&lt;meta&gt;",
+      "&lt;head&gt;",
+      "&lt;title&gt;"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+    "o": [
+      "alt",
+      "title",
+      "src",
+      "longdesc"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which doctype is correct for HTML5?",
+    "o": [
+      "&lt;!DOCTYPE HTML5&gt;",
+      "&lt;!DOCTYPE html&gt;",
+      "&lt;DOCTYPE html&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which HTML element is used to specify a footer for a document or section?",
+    "o": [
+      "&lt;section&gt;",
+      "&lt;footer&gt;",
+      "&lt;bottom&gt;",
+      "&lt;id=\"footer\"&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "In HTML, you can embed SVG elements directly into an HTML page.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML element for playing video files?",
+    "o": [
+      "&lt;media&gt;",
+      "&lt;video&gt;",
+      "&lt;movie&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What is the correct HTML element for playing audio files?",
+    "o": [
+      "&lt;audio&gt;",
+      "&lt;sound&gt;",
+      "&lt;music&gt;"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "The HTML global attribute, \"contenteditable\" is used to:",
+    "o": [
+      "Specify whether the content of an element should be editable or not",
+      "Specifies a context menu for an element",
+      "Updates content from the server",
+      "Specifies that the element is not relevant"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "In HTML, onblur and onfocus are:",
+    "o": [
+      "HTML elements",
+      "Style attributes",
+      "Event attributes"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Graphics defined by SVG is in which format?",
+    "o": [
+      "HTML",
+      "XML",
+      "CSS"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "The HTML &lt;canvas&gt; element is used to:",
+    "o": [
+      "manipulate data",
+      "create draggable elements",
+      "draw graphics",
+      "display database records"
+    ],
+    "a": 2,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "In HTML, which attribute is used to specify that an input field must be filled out?",
+    "o": [
+      "validate",
+      "required",
+      "placeholder",
+      "name"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which input type defines a slider control?",
+    "o": [
+      "slider",
+      "range",
+      "controls",
+      "number"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which HTML element is used to display a scalar measurement within a known range?",
+    "o": [
+      "&lt;meter&gt;",
+      "&lt;gauge&gt;",
+      "&lt;range&gt;",
+      "&lt;measure&gt;"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which HTML element defines navigation links?",
+    "o": [
+      "&lt;nav&gt;",
+      "&lt;navigation&gt;",
+      "&lt;navigate&gt;"
+    ],
+    "a": 0,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "In HTML, what does the &lt;aside&gt; element define?",
+    "o": [
+      "The sidebar of a webpage",
+      "Content aside from the page content",
+      "A navigation menu"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "Which HTML element is used to specify a header for a document or section?",
+    "o": [
+      "&lt;top&gt;",
+      "&lt;header&gt;",
+      "&lt;head&gt;",
+      "&lt;section&gt;"
+    ],
+    "a": 1,
+    "source": "HTML",
+    "labelLower": "html"
+  },
+  {
+    "q": "What does CSS stand for?",
+    "o": [
+      "Cascading Style Sheets",
+      "Computer Style Sheets",
+      "Creative Style Sheets",
+      "Colorful Style Sheets"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "What is the correct HTML for referring to an external style sheet?",
+    "o": [
+      "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\"&gt;",
+      "&lt;style src=\"mystyle.css\"&gt;",
+      "&lt;stylesheet&gt;mystyle.css&lt;/stylesheet&gt;"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Where in an HTML document is the correct place to refer to an external style sheet?",
+    "o": [
+      "In the &lt;body&gt; section",
+      "In the &lt;head&gt; section",
+      "At the end of the document"
+    ],
+    "a": 1,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Which HTML tag is used to define an internal style sheet?",
+    "o": [
+      "&lt;css&gt;",
+      "&lt;script&gt;",
+      "&lt;style&gt;"
+    ],
+    "a": 2,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Which HTML attribute is used to define inline styles?",
+    "o": [
+      "style",
+      "class",
+      "styles",
+      "font"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Which is the correct CSS syntax?",
+    "o": [
+      "body {color: black;}",
+      "{body:color=black;}",
+      "{body;color:black;}",
+      "body:color=black;"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you insert a comment in a CSS file?",
+    "o": [
+      "/* this is a comment */",
+      "// this is a comment",
+      "// this is a comment //",
+      "' this is a comment"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Which property is used to change the background color?",
+    "o": [
+      "color",
+      "bgcolor",
+      "background-color"
+    ],
+    "a": 2,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you add a background color for all &lt;h1&gt; elements?",
+    "o": [
+      "h1 {background-color:#FFFFFF;}",
+      "all.h1 {background-color:#FFFFFF;}",
+      "h1.all {background-color:#FFFFFF;}"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Which CSS property is used to change the text color of an element?",
+    "o": [
+      "fgcolor",
+      "color",
+      "text-color"
+    ],
+    "a": 1,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Which CSS property controls the text size?",
+    "o": [
+      "text-size",
+      "font-style",
+      "text-style",
+      "font-size"
+    ],
+    "a": 3,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "What is the correct CSS syntax for making all the &lt;p&gt; elements bold?",
+    "o": [
+      "p {text-size:bold;}",
+      "&lt;p style=\"font-size:bold;\"&gt;",
+      "p {font-weight:bold;}",
+      "&lt;p style=\"text-size:bold;\"&gt;"
+    ],
+    "a": 2,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you display hyperlinks without an underline?",
+    "o": [
+      "a {text-decoration:none;}",
+      "a {decoration:no-underline;}",
+      "a {underline:none;}",
+      "a {text-decoration:no-underline;}"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you make each word in a text start with a capital letter?",
+    "o": [
+      "text-style:capitalize",
+      "text-transform:capitalize",
+      "transform:capitalize",
+      "You can't do that with CSS"
+    ],
+    "a": 1,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Which property is used to change the font of an element?",
+    "o": [
+      "font-family",
+      "font-weight",
+      "font-style"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you make the text bold?",
+    "o": [
+      "style:bold;",
+      "font:bold;",
+      "font-weight:bold;"
+    ],
+    "a": 2,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you display a border like this: The top border = 10 pixels, the bottom border = 5 pixels, the left border = 20 pixels, and the right border = 1pixel?",
+    "o": [
+      "border-width:10px 1px 5px 20px;",
+      "border-width:5px 20px 10px 1px;",
+      "border-width:10px 5px 20px 1px;",
+      "border-width:10px 20px 5px 1px;"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Which property is used to change the left margin of an element?",
+    "o": [
+      "padding-left",
+      "margin-left",
+      "indent"
+    ],
+    "a": 1,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "When using the padding property; are you allowed to use negative values?",
+    "o": [
+      "Yes",
+      "No"
+    ],
+    "a": 1,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you make a list that lists its items with squares?",
+    "o": [
+      "list-style-type: square;",
+      "list-type: square;",
+      "list: square;"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you select an element with id \"demo\"?",
+    "o": [
+      "#demo",
+      ".demo",
+      "demo",
+      "*demo"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you select elements with class name \"test\"?",
+    "o": [
+      "#test",
+      ".test",
+      "test",
+      "*test"
+    ],
+    "a": 1,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you select all p elements inside a div element?",
+    "o": [
+      "div p",
+      "div + p",
+      "div.p"
+    ],
+    "a": 0,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "How do you group selectors?",
+    "o": [
+      "Separate each selector with a plus sign",
+      "Separate each selector with a space",
+      "Separate each selector with a comma"
+    ],
+    "a": 2,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "What is the default value of the position property?",
+    "o": [
+      "relative",
+      "fixed",
+      "absolute",
+      "static"
+    ],
+    "a": 3,
+    "source": "CSS",
+    "labelLower": "css"
+  },
+  {
+    "q": "Inside which HTML element do we put the JavaScript?",
+    "o": [
+      "&lt;js&gt;",
+      "&lt;javascript&gt;",
+      "&lt;scripting&gt;",
+      "&lt;script&gt;"
+    ],
+    "a": 3,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "Where is the correct place to insert a JavaScript?",
+    "o": [
+      "The &lt;head&gt; section",
+      "The &lt;body&gt; section",
+      "Both the &lt;head&gt; section and the &lt;body&gt; section are correct"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "What is the correct syntax for referring to an external script called 'app.js'?",
+    "o": [
+      "&lt;script name=\"app.js\"&gt;",
+      "&lt;script href=\"app.js\"&gt;",
+      "&lt;script src=\"app.js\"&gt;"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "The external JavaScript file must contain the &lt;script&gt; tag.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How do you write 'Hello World' in an alert box?",
+    "o": [
+      "msgBox(\"Hello World\");",
+      "alertBox(\"Hello World\");",
+      "msg(\"Hello World\");",
+      "alert(\"Hello World\");"
+    ],
+    "a": 3,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How do you create a function in JavaScript?",
+    "o": [
+      "function myFunction()",
+      "function:myFunction()",
+      "function = myFunction()"
+    ],
+    "a": 0,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How do you call a function named 'myFunction'?",
+    "o": [
+      "call function myFunction()",
+      "myFunction()",
+      "call myFunction()"
+    ],
+    "a": 1,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How to write an IF statement in JavaScript?",
+    "o": [
+      "if i = 5 then",
+      "if i == 5 then",
+      "if i = 5",
+      "if (i == 5)"
+    ],
+    "a": 3,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+    "o": [
+      "if i =! 5 then",
+      "if (i != 5)",
+      "if i &lt;&gt; 5",
+      "if (i &lt;&gt; 5)"
+    ],
+    "a": 1,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How does a WHILE loop start?",
+    "o": [
+      "while (i &lt;= 10; i++)",
+      "while i = 1 to 10",
+      "while (i &lt;= 10)"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How does a FOR loop start?",
+    "o": [
+      "for (i &lt;= 5; i++)",
+      "for (i = 0; i &lt;= 5)",
+      "for (i = 0; i &lt;= 5; i++)",
+      "for i = 1 to 5"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How can you add a comment in a JavaScript?",
+    "o": [
+      "'This is a comment",
+      "&lt;!--This is a comment--&gt;",
+      "//This is a comment"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How to insert a comment that has more than one line?",
+    "o": [
+      "/*This comment has<br>more than one line*/",
+      "&lt;!--This comment has<br>more than one line--&gt;",
+      "//This comment has<br>more than one line//"
+    ],
+    "a": 0,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "What is the correct way to write a JavaScript array?",
+    "o": [
+      "var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")",
+      "var colors = [\"red\", \"green\", \"blue\"]",
+      "var colors = \"red\", \"green\", \"blue\"",
+      "var colors = (1:\"red\", 2:\"green\", 3:\"blue\")"
+    ],
+    "a": 1,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How do you round the number 7.25, to the nearest integer?",
+    "o": [
+      "Math.rnd(7.25)",
+      "round(7.25)",
+      "rnd(7.25)",
+      "Math.round(7.25)"
+    ],
+    "a": 3,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How do you find the number with the highest value of x and y?",
+    "o": [
+      "ceil(x, y)",
+      "Math.ceil(x, y)",
+      "Math.max(x, y)",
+      "top(x, y)"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "What is the correct JavaScript syntax for opening a new window called 'w2'?",
+    "o": [
+      "w2 = window.open(\"http://www.example.com\");",
+      "w2 = window.new(\"http://www.example.com\");"
+    ],
+    "a": 0,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "JavaScript is the same as Java.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How can you detect the client's browser name?",
+    "o": [
+      "client.navName",
+      "navigator.appName",
+      "browser.name"
+    ],
+    "a": 1,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "Which event occurs when the user clicks on an HTML element?",
+    "o": [
+      "onmouseclick",
+      "onchange",
+      "onclick",
+      "onmouseover"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "How do you declare a JavaScript variable?",
+    "o": [
+      "var carName;",
+      "v carName;",
+      "variable carName;"
+    ],
+    "a": 0,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "Which operator is used to assign a value to a variable?",
+    "o": [
+      "-",
+      "x",
+      "=",
+      "*"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "What will the following code return: Boolean(10 &gt; 9)",
+    "o": [
+      "NaN",
+      "true",
+      "false"
+    ],
+    "a": 1,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "Is JavaScript case-sensitive?",
+    "o": [
+      "No",
+      "Yes"
+    ],
+    "a": 1,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "Which built-in property returns the length of a string?",
+    "o": [
+      "size()",
+      "length()",
+      "length",
+      "index()"
+    ],
+    "a": 2,
+    "source": "JavaScript",
+    "labelLower": "js"
+  },
+  {
+    "q": "What is Bootstrap?",
+    "o": [
+      "A CSS framework for developing responsive web pages",
+      "A JavaScript library",
+      "A server-side scripting language"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Who developed Bootstrap?",
+    "o": [
+      "Google",
+      "Twitter",
+      "Facebook",
+      "Microsoft"
+    ],
+    "a": 1,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Is Bootstrap completely free to use?",
+    "o": [
+      "Yes",
+      "No"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "The Bootstrap grid system works across multiple devices.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class provides a responsive fixed width container?",
+    "o": [
+      ".container-fixed",
+      ".container-fluid",
+      ".container"
+    ],
+    "a": 2,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class provides a full width container, spanning the entire width of the viewport?",
+    "o": [
+      ".container-fluid",
+      ".container-full",
+      ".container"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "The Bootstrap grid system is based on how many columns?",
+    "o": [
+      "6",
+      "9",
+      "12",
+      "16"
+    ],
+    "a": 2,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class adds zebra-stripes to a table?",
+    "o": [
+      ".even and .odd",
+      ".table-striped",
+      ".table-zebra",
+      ".table-bordered"
+    ],
+    "a": 1,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class shapes an image to a circle?",
+    "o": [
+      ".img-round",
+      ".img-circle / .rounded-circle",
+      ".img-thumbnail"
+    ],
+    "a": 1,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class is used to create a big box for calling extra attention?",
+    "o": [
+      ".big-box",
+      ".container",
+      ".jumbotron"
+    ],
+    "a": 2,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which button class is used to create a large button?",
+    "o": [
+      ".btn-xl",
+      ".btn-large",
+      ".btn-lg"
+    ],
+    "a": 2,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class is used to create a block level button (spans the full width of the parent)?",
+    "o": [
+      ".btn-block",
+      ".btn-full",
+      ".btn-wide"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which contextual class indicates a successful or positive action?",
+    "o": [
+      ".text-success / .btn-success",
+      ".text-primary / .btn-primary",
+      ".text-info / .btn-info"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class is used to create a badge?",
+    "o": [
+      ".label",
+      ".tag",
+      ".badge"
+    ],
+    "a": 2,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class is used to create a basic pagination?",
+    "o": [
+      ".pages",
+      ".pagination",
+      ".nav"
+    ],
+    "a": 1,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class is used to create a basic list group?",
+    "o": [
+      ".list-group",
+      ".group-list",
+      ".ul-group"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class creates a navigation bar?",
+    "o": [
+      ".navbar",
+      ".nav-menu",
+      ".navigation"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which plugin is used to cycle through elements, like a slideshow?",
+    "o": [
+      ".slideshow",
+      ".scrollspy",
+      ".carousel"
+    ],
+    "a": 2,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class is used to create a dropdown menu?",
+    "o": [
+      ".dropdown",
+      ".select",
+      ".menu-drop"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class adds a contextual background color?",
+    "o": [
+      ".bg-color-*",
+      ".bg-* (e.g., .bg-primary)",
+      ".background-*"
+    ],
+    "a": 1,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class indicates an active state?",
+    "o": [
+      ".active",
+      ".current",
+      ".selected"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class hides an element on all devices in Bootstrap 4/5?",
+    "o": [
+      ".hide",
+      ".d-none",
+      ".invisible"
+    ],
+    "a": 1,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "How do you create a progress bar?",
+    "o": [
+      ".progress-bar",
+      ".bar",
+      ".progress-meter"
+    ],
+    "a": 0,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class is used for a flexible and extensible content container with multiple variants and options (Bootstrap 4/5)?",
+    "o": [
+      ".panel",
+      ".card",
+      ".well"
+    ],
+    "a": 1,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which class creates a spinner/loader?",
+    "o": [
+      ".loader",
+      ".spinner-border",
+      ".loading"
+    ],
+    "a": 1,
+    "source": "Bootstrap",
+    "labelLower": "bootstrap"
+  },
+  {
+    "q": "Which of the following is correct?",
+    "o": [
+      "jQuery is a JavaScript Library",
+      "jQuery is a JSON Library"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "jQuery uses CSS selectors to select elements.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Which sign does jQuery use as a shortcut for jQuery?",
+    "o": [
+      "the ? sign",
+      "the $ sign",
+      "the % sign"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "With jQuery, look at the following selector: $(\"div\"). What does it select?",
+    "o": [
+      "All div elements",
+      "The first div element"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Is jQuery a library for client scripting or server scripting?",
+    "o": [
+      "Client scripting",
+      "Server scripting"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Is it possible to use jQuery together with AJAX?",
+    "o": [
+      "Yes",
+      "No"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "The jQuery html() method works for both HTML and XML documents.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "What is the correct jQuery code to set the background color of all p elements to red?",
+    "o": [
+      "$(\"p\").layout(\"background-color\",\"red\");",
+      "$(\"p\").css(\"background-color\",\"red\");",
+      "$(\"p\").style(\"background-color\",\"red\");",
+      "$(\"p\").manipulate(\"background-color\",\"red\");"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "With jQuery, look at the following selector: $(\"div.intro\"). What does it select?",
+    "o": [
+      "The first div element with class=\"intro\"",
+      "All div elements with id=\"intro\"",
+      "All div elements with class=\"intro\""
+    ],
+    "a": 2,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Which jQuery method is used to hide selected elements?",
+    "o": [
+      "hidden()",
+      "hide()",
+      "visible(false)",
+      "display(none)"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Which jQuery method is used to set one or more style properties for selected elements?",
+    "o": [
+      "style()",
+      "css()",
+      "html()"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Which jQuery method is used to perform an asynchronous HTTP request?",
+    "o": [
+      "jQuery.ajaxAsync()",
+      "jQuery.ajax()",
+      "jQuery.ajaxSetup()"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "What is the correct jQuery code for making all div elements 100 pixels high?",
+    "o": [
+      "$(\"div\").height=\"100\"",
+      "$(\"div\").height(100)",
+      "$(\"div\").yPos(100)"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Look at the following jQuery selector: $(\"p#intro\"). What does it select?",
+    "o": [
+      "The p element with id=\"intro\"",
+      "The first p element with id=\"intro\"",
+      "The p element with class=\"intro\""
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Which jQuery statement should you use if you want to hide all &lt;p&gt; elements?",
+    "o": [
+      "$(\"p\").hide();",
+      "hide(\"p\");",
+      "$(\"p\").hide;"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Which jQuery method should you use if you want to make an element fade out?",
+    "o": [
+      "fadeOut()",
+      "fade()",
+      "fadeDown()"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "What is the correct jQuery code to hide all &lt;p&gt; elements with class=\"test\"",
+    "o": [
+      "$(\"p .test\").hide();",
+      "$(\"p.test\").hide();",
+      "$(\"p#test\").hide();",
+      "$(\"#test p\").hide();"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "What is the correct jQuery code to set the text of a selected element to \"Hello World\"?",
+    "o": [
+      "text(\"Hello World\");",
+      "$(\"this\").text(\"Hello World\");",
+      "$(\"this\").html(\"Hello World\");",
+      "text(\"this\", \"Hello World\");"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Look at the following jQuery selector: $(\"[href$='.jpg']\"). What does it select?",
+    "o": [
+      "All elements with a href attribute that contains \".jpg\"",
+      "All elements with a href attribute that starts with \".jpg\"",
+      "All elements with a href attribute that ends with \".jpg\""
+    ],
+    "a": 2,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "What is the correct jQuery code to get the inner HTML of an element?",
+    "o": [
+      "html()",
+      "innerHTML()",
+      "getContent()",
+      "val()"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "What is the correct jQuery code to get the value of an input field?",
+    "o": [
+      "$(\"input\").value();",
+      "$(\"input\").val();",
+      "$(\"input\").text();"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "The animate() method can be used to animate ALL CSS properties?",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 0,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Which jQuery method is used to switch between adding/removing one or more classes (for CSS) from selected elements?",
+    "o": [
+      "switchClass()",
+      "toggleClass()",
+      "altClass()",
+      "switch()"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "jQuery is a W3C standard.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "Which jQuery method is used to remove selected elements?",
+    "o": [
+      "remove()",
+      "empty()",
+      "detach()",
+      "all of the above"
+    ],
+    "a": 3,
+    "source": "jQuery",
+    "labelLower": "jquery"
+  },
+  {
+    "q": "What is MySQL?",
+    "o": [
+      "Developed, distributed, and supported by Oracle Corporation",
+      "All the options are correct",
+      "Cross-platform, open-source and free",
+      "A relational database management system"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which SQL statement is used to extract data from a database?",
+    "o": [
+      "SELECT",
+      "GET",
+      "EXTRACT",
+      "OPEN"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which SQL statement is used to update data in a database?",
+    "o": [
+      "UPDATE",
+      "SAVE",
+      "SAVE AS",
+      "MODIFY"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which SQL statement is used to delete data from a database?",
+    "o": [
+      "REMOVE",
+      "COLLAPSE",
+      "DELETE"
+    ],
+    "a": 2,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which SQL statement is used to insert new data in a database?",
+    "o": [
+      "INSERT INTO",
+      "ADD RECORD",
+      "INSERT NEW",
+      "ADD NEW"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how do you select a column named \"FirstName\" from a table named \"Persons\"?",
+    "o": [
+      "EXTRACT FirstName FROM Persons",
+      "SELECT FirstName FROM Persons",
+      "SELECT Persons.FirstName"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how do you select all the columns from a table named \"Persons\"?",
+    "o": [
+      "SELECT * FROM Persons",
+      "SELECT Persons",
+      "SELECT [all] FROM Persons",
+      "SELECT *.Persons"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how do you select all the records from a table named \"Persons\" where the value of the column \"FirstName\" is \"Peter\"?",
+    "o": [
+      "SELECT * FROM Persons WHERE FirstName&lt;&gt;'Peter'",
+      "SELECT * FROM Persons WHERE FirstName='Peter'",
+      "SELECT [all] FROM Persons WHERE FirstName='Peter'",
+      "SELECT [all] FROM Persons WHERE FirstName LIKE 'Peter'"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how do you select all the records from a table named \"Persons\" where the value of the column \"FirstName\" starts with an \"a\"?",
+    "o": [
+      "SELECT * FROM Persons WHERE FirstName LIKE '%a'",
+      "SELECT * FROM Persons WHERE FirstName='%a%'",
+      "SELECT * FROM Persons WHERE FirstName LIKE 'a%'",
+      "SELECT * FROM Persons WHERE FirstName='a'"
+    ],
+    "a": 2,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "The OR operator displays a record if ANY conditions listed are true. The AND operator displays a record if ALL of the conditions listed are true",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how do you select all the records from a table named \"Persons\" where the \"FirstName\" is \"Peter\" and \"LastName\" is \"Jackson\"?",
+    "o": [
+      "SELECT FirstName='Peter', LastName='Jackson' FROM Persons",
+      "SELECT * FROM Persons WHERE FirstName='Peter' AND LastName='Jackson'",
+      "SELECT * FROM Persons WHERE FirstName&lt;&gt;'Peter' AND LastName&lt;&gt;'Jackson'"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how do you select all the records from a table named \"Persons\" where the \"LastName\" is alphabetically between (and including) \"Hansen\" and \"Pettersen\"?",
+    "o": [
+      "SELECT * FROM Persons WHERE LastName BETWEEN 'Hansen' AND 'Pettersen'",
+      "SELECT LastName&gt;'Hansen' AND LastName&lt;'Pettersen' FROM Persons",
+      "SELECT * FROM Persons WHERE LastName&gt;'Hansen' AND LastName&lt;'Pettersen'"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which SQL statement is used to return only different values?",
+    "o": [
+      "SELECT UNIQUE",
+      "SELECT DISTINCT",
+      "SELECT DIFFERENT"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which SQL keyword is used to sort the result-set?",
+    "o": [
+      "ORDER BY",
+      "SORT BY",
+      "ORDER",
+      "SORT"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how can you return all the records from a table named \"Persons\" sorted descending by \"FirstName\"?",
+    "o": [
+      "SELECT * FROM Persons SORT 'FirstName' DESC",
+      "SELECT * FROM Persons ORDER FirstName DESC",
+      "SELECT * FROM Persons SORT BY 'FirstName' DESC",
+      "SELECT * FROM Persons ORDER BY FirstName DESC"
+    ],
+    "a": 3,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how can you insert \"Olsen\" as the \"LastName\" in the \"Persons\" table?",
+    "o": [
+      "INSERT ('Olsen') INTO Persons (LastName)",
+      "INSERT INTO Persons (LastName) VALUES ('Olsen')",
+      "INSERT INTO Persons ('Olsen') INTO LastName"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "How can you change \"Hansen\" into \"Nilsen\" in the \"LastName\" column in the Persons table?",
+    "o": [
+      "UPDATE Persons SET LastName='Nilsen' WHERE LastName='Hansen'",
+      "MODIFY Persons SET LastName='Hansen' INTO LastName='Nilsen'",
+      "MODIFY Persons SET LastName='Nilsen' WHERE LastName='Hansen'",
+      "UPDATE Persons SET LastName='Hansen' INTO LastName='Nilsen'"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how can you delete the records where the \"FirstName\" is \"Peter\" in the Persons Table?",
+    "o": [
+      "DELETE ROW FirstName='Peter' FROM Persons",
+      "DELETE FirstName='Peter' FROM Persons",
+      "DELETE FROM Persons WHERE FirstName='Peter'"
+    ],
+    "a": 2,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "With MySQL, how can you return the number of records in the \"Persons\" table?",
+    "o": [
+      "SELECT COLUMNS(*) FROM Persons",
+      "SELECT COUNT() FROM Persons",
+      "SELECT COUNT(*) FROM Persons",
+      "SELECT NO(*) FROM Persons"
+    ],
+    "a": 2,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "What is the most common type of join?",
+    "o": [
+      "INNER JOIN",
+      "JOINED",
+      "OUTER JOIN",
+      "JOINED TABLE"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which operator is used to select values within a range?",
+    "o": [
+      "RANGE",
+      "BETWEEN",
+      "WITHIN"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "The NOT NULL constraint enforces a column to not accept NULL values.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which operator is used to search for a specified pattern in a column?",
+    "o": [
+      "GET",
+      "LIKE",
+      "FROM"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which SQL statement is used to create a database table called 'Customers'?",
+    "o": [
+      "CREATE TABLE Customers",
+      "CREATE DB Customers",
+      "CREATE DATABASE TAB Customers"
+    ],
+    "a": 0,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "Which MySQL data type can be used to store a string?",
+    "o": [
+      "DOUBLE",
+      "VARCHAR",
+      "DATE",
+      "INT"
+    ],
+    "a": 1,
+    "source": "MySQL",
+    "labelLower": "mysql"
+  },
+  {
+    "q": "What does PHP stand for?",
+    "o": [
+      "Private Home Page",
+      "Personal Hypertext Processor",
+      "PHP: Hypertext Preprocessor"
+    ],
+    "a": 2,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "PHP server scripts are surrounded by delimiters, which?",
+    "o": [
+      "&lt;script&gt;...&lt;/script&gt;",
+      "&lt;?php ... ?&gt;",
+      "&lt;?php&gt;...&lt;/?&gt;",
+      "&lt;&amp;&gt;...&lt;/&amp;&gt;"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "How do you write \"Hello World\" in PHP?",
+    "o": [
+      "echo \"Hello World\";",
+      "Document.Write(\"Hello World\");",
+      "\"Hello World\";"
+    ],
+    "a": 0,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "All variables in PHP start with which symbol?",
+    "o": [
+      "!",
+      "&amp;",
+      "$"
+    ],
+    "a": 2,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "What is the correct way to end a PHP statement?",
+    "o": [
+      "New line",
+      "&lt;/php&gt;",
+      ";",
+      "."
+    ],
+    "a": 2,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "The PHP syntax is most similar to:",
+    "o": [
+      "JavaScript",
+      "VBScript",
+      "Perl and C"
+    ],
+    "a": 2,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "How do you get information from a form that is submitted using the \"get\" method?",
+    "o": [
+      "Request.QueryString;",
+      "$_GET[];",
+      "Request.Form;"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "When using the POST method, variables are displayed in the URL:",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 0,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "In PHP you can use both single quotes ( ' ' ) and double quotes ( \" \" ) for strings:",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "Include files must have the file extension \".inc\"",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "What is the correct way to include the file \"time.inc\" ?",
+    "o": [
+      "&lt;?php include \"time.inc\"; ?&gt;",
+      "&lt;?php include file=\"time.inc\"; ?&gt;",
+      "&lt;!-- include file=\"time.inc\" --&gt;",
+      "&lt;?php include:\"time.inc\"; ?&gt;"
+    ],
+    "a": 0,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "What is the correct way to create a function in PHP?",
+    "o": [
+      "create myFunction()",
+      "new_function myFunction()",
+      "function myFunction()"
+    ],
+    "a": 2,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "What is the correct way to open the file \"time.txt\" as readable?",
+    "o": [
+      "open(\"time.txt\",\"read\");",
+      "fopen(\"time.txt\",\"read\");",
+      "open(\"time.txt\");",
+      "fopen(\"time.txt\",\"r\");"
+    ],
+    "a": 3,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "PHP allows you to send emails directly from a script.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "Which superglobal variable holds information about headers, paths, and script locations?",
+    "o": [
+      "$_SERVER",
+      "$_GLOBALS",
+      "$_GET",
+      "$_SESSION"
+    ],
+    "a": 0,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "What is the correct way to add 1 to the $count variable?",
+    "o": [
+      "$count =+1",
+      "$count++;",
+      "++count",
+      "count++;"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "What is a correct way to add a comment in PHP?",
+    "o": [
+      "&lt;!--...--&gt;",
+      "&lt;comment&gt;...&lt;/comment&gt;",
+      "/*...*/",
+      "*...\\*"
+    ],
+    "a": 2,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "PHP can be run on Microsoft Windows IIS(Internet Information Server):",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "The die() and exit() functions do the exact same thing.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "Which one of these variables has an illegal name?",
+    "o": [
+      "$my-Var",
+      "$myVar",
+      "$my_Var"
+    ],
+    "a": 0,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "How do you create a cookie in PHP?",
+    "o": [
+      "makecookie()",
+      "setcookie()",
+      "createcookie()"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "In PHP, the only way to output text is with echo.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "How do you create an array in PHP?",
+    "o": [
+      "$cars = array[\"Volvo\", \"BMW\", \"Toyota\"];",
+      "$cars = \"Volvo\", \"BMW\", \"Toyota\";",
+      "$cars = array(\"Volvo\", \"BMW\", \"Toyota\");"
+    ],
+    "a": 2,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "The if statement is used to execute some code only if a specified condition is true.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "Which operator is used to check if two values are equal and of same data type?",
+    "o": [
+      "!=",
+      "==",
+      "=",
+      "==="
+    ],
+    "a": 3,
+    "source": "PHP",
+    "labelLower": "php"
+  },
+  {
+    "q": "What does XML stand for?",
+    "o": [
+      "eXtensible Markup Language",
+      "eXtra Modern Link",
+      "Example Markup Language",
+      "X-Markup Language"
+    ],
+    "a": 0,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "There is a way of describing XML data, how?",
+    "o": [
+      "XML uses a DTD to describe the data",
+      "XML uses a description node to describe data",
+      "XML uses XSL to describe data"
+    ],
+    "a": 0,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "What does DTD stand for?",
+    "o": [
+      "Dynamic Type Definition",
+      "Document Type Definition",
+      "Do The Dance",
+      "Direct Type Definition"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "Which statement is true?",
+    "o": [
+      "All XML elements must be properly closed",
+      "All XML elements must be lower case",
+      "All XML documents must have a DTD",
+      "All the statements are true"
+    ],
+    "a": 0,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "Which statement is true?",
+    "o": [
+      "All the statements are true",
+      "XML elements must be properly nested",
+      "XML tags are case sensitive",
+      "XML documents must have a root tag"
+    ],
+    "a": 0,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "XML preserves white spaces",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "Is it easier to process XML than HTML?",
+    "o": [
+      "No",
+      "Yes",
+      "Sometimes"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "XML elements cannot be empty",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "Which is not a correct XML element name?",
+    "o": [
+      "&lt;1dollar&gt;",
+      "&lt;p&gt;",
+      "&lt;h1&gt;",
+      "&lt;Note&gt;"
+    ],
+    "a": 0,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "Which is a correct XML element name?",
+    "o": [
+      "&lt;phone number&gt;",
+      "&lt;xmldocument&gt;",
+      "&lt;7eleven&gt;",
+      "&lt;note&gt;"
+    ],
+    "a": 3,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "XML attribute values must always be enclosed in quotes",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "What does XSL stand for?",
+    "o": [
+      "eXtra Style Language",
+      "eXtensible Style Language",
+      "eXpandable Style Language"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "What is a correct way of referring to a stylesheet called \"mystyle.xsl\" ?",
+    "o": [
+      "&lt;link type=\"text/xsl\" href=\"mystyle.xsl\" /&gt;",
+      "&lt;?xml-stylesheet type=\"text/xsl\" href=\"mystyle.xsl\" ?&gt;",
+      "&lt;stylesheet type=\"text/xsl\" href=\"mystyle.xsl\" /&gt;"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "For the XML parser to ignore a certain section of your XML document, which syntax is correct?",
+    "o": [
+      "&lt;xml:CDATA[ Text to be ignored ]&gt;",
+      "&lt;![CDATA[ Text to be ignored ]]&gt;",
+      "&lt;PCDATA&gt; Text to be ignored &lt;/PCDATA&gt;",
+      "&lt;CDATA&gt; Text to be ignored &lt;/CDATA&gt;"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "XML validation errors must be reported by the XML parser?",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "Which of the following DOM elements is the root element?",
+    "o": [
+      "NodeList",
+      "Element",
+      "Document",
+      "Node"
+    ],
+    "a": 2,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "What is the DOM property that returns the root element?",
+    "o": [
+      "document.documentElement",
+      "document.rootElement",
+      "document.xmlRoot",
+      "document.html"
+    ],
+    "a": 0,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "What is a correct syntax to create an XML HTTP Request object in modern browsers?",
+    "o": [
+      "new XMLHttpRequest()",
+      "new XMLHTTP()",
+      "new XMLHttpRequestObject()",
+      "new ActiveXObject(\"Microsoft.XMLHTTP\")"
+    ],
+    "a": 0,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "The XML HTTP Request object can be used to send and receive data behind the scenes?",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  },
+  {
+    "q": "The XML DOM method loadXML() is used to load an XML document?",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "XML",
+    "labelLower": "xml"
+  }
+];
+    </script>
+
+    <!-- MAIN CORE LOGIC SCRIPT -->
+    <script>
+        const files = [
+            { name: 'w3schools_html_quiz.html', label: 'HTML', labelLower: 'html' },
+            { name: 'w3schools_css_quiz.html', label: 'CSS', labelLower: 'css' },
+            { name: 'javascript_quiz.html', label: 'JavaScript', labelLower: 'js' },
+            { name: 'bootstrap_quiz.html', label: 'Bootstrap', labelLower: 'bootstrap' },
+            { name: 'w3schools_jquery_quiz.html', label: 'jQuery', labelLower: 'jquery' },
+            { name: 'w3schools_mysql_quiz.html', label: 'MySQL', labelLower: 'mysql' },
+            { name: 'w3schools_php_quiz.html', label: 'PHP', labelLower: 'php' },
+            { name: 'w3schools_xml_quiz.html', label: 'XML', labelLower: 'xml' }
+        ];
+
+        let database = []; // Store the active question pool
+        let activeQuestions = []; // Selected slice of questions for the quiz
+        let scoreBreakdown = {}; // Store stats per subject
+        
+        let timerInterval = null;
+        let timeElapsed = 0; // seconds
+        const answeredTracker = new Set();
+        let isSubmitted = false;
+
+        // Custom bracket parser to pull array from HTML
+        function extractArrayString(htmlText) {
+            const startIndex = htmlText.indexOf('const questions =');
+            if (startIndex === -1) return null;
+            
+            const openBracketIndex = htmlText.indexOf('[', startIndex);
+            if (openBracketIndex === -1) return null;
+            
+            let depth = 1;
+            let index = openBracketIndex + 1;
+            let inString = false;
+            let stringChar = null;
+            let isEscaped = false;
+            
+            while (index < htmlText.length && depth > 0) {
+                const char = htmlText[index];
+                
+                if (isEscaped) {
+                    isEscaped = false;
+                } else if (char === '\\\\') {
+                    isEscaped = true;
+                } else if (inString) {
+                    if (char === stringChar) {
+                        inString = false;
+                    }
+                } else if (char === '"' || char === "'" || char === '`') {
+                    inString = true;
+                    stringChar = char;
+                } else if (char === '[') {
+                    depth++;
+                } else if (char === ']') {
+                    depth--;
+                }
+                index++;
+            }
+            
+            if (depth === 0) {
+                return htmlText.substring(openBracketIndex, index);
+            }
+            return null;
+        }
+
+        // Show a temporary message toast
+        function showToast(message) {
+            const toast = document.getElementById('toast-notify');
+            document.getElementById('toast-msg').innerText = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        // Initialize setup screen UI
+        function populateSubjectSelectors(groupedQuestions) {
+            const container = document.getElementById('subject-selectors');
+            container.innerHTML = '';
+            
+            files.forEach(file => {
+                const list = groupedQuestions[file.label] || [];
+                const count = list.length;
+                
+                const wrapper = document.createElement('label');
+                wrapper.style.display = 'contents';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'subject-checkbox';
+                checkbox.value = file.label;
+                checkbox.checked = count > 0;
+                checkbox.disabled = count === 0;
+                checkbox.id = `check-${file.labelLower}`;
+                checkbox.onchange = handleSubjectSelectionChange;
+                
+                const card = document.createElement('div');
+                card.className = `subject-card ${file.labelLower}`;
+                card.innerHTML = `
+                    ${file.label}
+                    <span class="sub-badge">${count} câu hỏi</span>
+                `;
+                
+                wrapper.appendChild(checkbox);
+                wrapper.appendChild(card);
+                container.appendChild(wrapper);
+            });
+            
+            document.getElementById('start-btn').disabled = false;
+        }
+
+        function handleSubjectSelectionChange() {
+            // Recount questions available
+            const selectedSubjects = getSelectedSubjects();
+            let totalAvailable = 0;
+            selectedSubjects.forEach(sub => {
+                const count = database.filter(q => q.source === sub).length;
+                totalAvailable += count;
+            });
+            
+            const startBtn = document.getElementById('start-btn');
+            if (selectedSubjects.length === 0 || totalAvailable === 0) {
+                startBtn.disabled = true;
+                startBtn.innerText = 'Bắt đầu ôn tập (0 câu)';
+            } else {
+                startBtn.disabled = false;
+                startBtn.innerText = 'Bắt đầu ôn tập';
+            }
+        }
+
+        function getSelectedSubjects() {
+            const checkboxes = document.querySelectorAll('.subject-checkbox:checked');
+            return Array.from(checkboxes).map(cb => cb.value);
+        }
+
+        function selectCountOption(labelElement) {
+            // Remove active classes
+            document.querySelectorAll('.count-btn-label').forEach(el => {
+                el.classList.remove('active');
+            });
+            labelElement.classList.add('active');
+            
+            // Check radio button
+            const radio = labelElement.querySelector('input[type="radio"]');
+            if (radio) radio.checked = true;
+        }
+
+        // Fetch HTML files dynamically (with fallback)
+        async function initApp() {
+            const statusBadge = document.getElementById('data-status-badge');
+            const statusText = document.getElementById('data-status-text');
+            
+            let loadedFromFiles = 0;
+            let tempPool = [];
+            
+            // Try fetching from each file
+            for (const file of files) {
+                try {
+                    const response = await fetch(file.name);
+                    if (!response.ok) throw new Error(`status: ${response.status}`);
+                    const text = await response.text();
+                    
+                    const arrayStr = extractArrayString(text);
+                    if (!arrayStr) throw new Error('Could not parse questions array from file');
+                    
+                    const questions = new Function(`return ${arrayStr}`)();
+                    
+                    questions.forEach(q => {
+                        tempPool.push({
+                            q: q.q,
+                            o: q.o,
+                            a: q.a,
+                            source: file.label,
+                            labelLower: file.labelLower
+                        });
+                    });
+                    
+                    loadedFromFiles++;
+                } catch (e) {
+                    console.warn(`Không thể tải ${file.name}: ${e.message}`);
+                }
+            }
+
+            if (loadedFromFiles === files.length) {
+                database = tempPool;
+                statusBadge.className = 'status-pill';
+                statusText.innerText = 'Dữ liệu trực tiếp (Đồng bộ)';
+                showToast('Tải dữ liệu trực tiếp thành công từ 8 file!');
+            } else {
+                // Fetch failed for one or more, fallback to embedded DB
+                database = FALLBACK_DB;
+                statusBadge.className = 'status-pill fallback';
+                statusText.innerText = 'Dữ liệu dự phòng (CORS)';
+                showToast('Đang sử dụng dữ liệu dự phòng do chặn bảo mật CORS hoặc thiếu file.');
+            }
+
+            // Group questions by source for setup UI
+            const grouped = {};
+            files.forEach(f => grouped[f.label] = []);
+            database.forEach(q => {
+                if (grouped[q.source]) {
+                    grouped[q.source].push(q);
+                }
+            });
+
+            populateSubjectSelectors(grouped);
+        }
+
+        // Setup Timer
+        function startTimer() {
+            timeElapsed = 0;
+            document.getElementById('timer-display').innerText = '00:00:00';
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeElapsed++;
+                const hrs = Math.floor(timeElapsed / 3600).toString().padStart(2, '0');
+                const mins = Math.floor((timeElapsed % 3600) / 60).toString().padStart(2, '0');
+                const secs = (timeElapsed % 60).toString().padStart(2, '0');
+                document.getElementById('timer-display').innerText = `${hrs}:${mins}:${secs}`;
+            }, 1000);
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function formatTimerString(seconds) {
+            const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const secs = (seconds % 60).toString().padStart(2, '0');
+            return `${mins}:${secs}`;
+        }
+
+        // Start Quiz action
+        function startQuiz() {
+            const selectedSubjects = getSelectedSubjects();
+            if (selectedSubjects.length === 0) {
+                showToast('Vui lòng chọn ít nhất một chủ đề.');
+                return;
+            }
+
+            // Filter database pool by selected subjects
+            let pool = database.filter(q => selectedSubjects.includes(q.source));
+            
+            // Shuffle entire pool
+            pool = shuffleArray([...pool]);
+
+            // Determine question count limit
+            const countRadio = document.querySelector('input[name="count-select"]:checked');
+            let maxCount = pool.length;
+            if (countRadio.value !== 'all') {
+                maxCount = Math.min(parseInt(countRadio.value), pool.length);
+            }
+
+            // Slice to chosen count
+            activeQuestions = pool.slice(0, maxCount);
+
+            // Shuffling options in selected questions
+            activeQuestions.forEach(item => {
+                const correctText = item.o[item.a];
+                item.o = shuffleArray([...item.o]);
+                item.a = item.o.indexOf(correctText);
+            });
+
+            // Transition Screen
+            document.getElementById('setup-panel').style.display = 'none';
+            
+            const quizContainer = document.getElementById('quiz-panel');
+            quizContainer.style.display = 'grid';
+            document.getElementById('header-progress').style.display = 'flex';
+
+            // Clear state
+            answeredTracker.clear();
+            isSubmitted = false;
+            
+            // Build the quiz forms & elements
+            renderQuestions();
+            renderQuestionNavMap();
+            updateProgressBar();
+            startTimer();
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast(`Bắt đầu làm bài: ${activeQuestions.length} câu hỏi.`);
+        }
+
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[arr[j] !== undefined ? j : i]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // Render Questions to Form
+        function renderQuestions() {
+            const form = document.getElementById('quiz-form');
+            form.innerHTML = '';
+
+            activeQuestions.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = 'question-card';
+                card.id = `q-card-${index}`;
+
+                // Header with badge and label
+                const header = document.createElement('div');
+                header.className = 'question-header';
+
+                const title = document.createElement('h3');
+                title.className = 'question-title';
+                
+                // User requirement: append (Từ html), (Từ css), (Từ js)... in the title
+                title.innerHTML = `Câu ${index + 1}: ${item.q} (Từ ${item.labelLower})`;
+
+                const badge = document.createElement('span');
+                badge.className = `badge ${item.labelLower}`;
+                badge.innerText = item.source;
+
+                header.appendChild(title);
+                header.appendChild(badge);
+                card.appendChild(header);
+
+                // Option List
+                const optionsList = document.createElement('div');
+                optionsList.className = 'options-list';
+
+                item.o.forEach((opt, oIdx) => {
+                    const label = document.createElement('label');
+                    label.className = 'option-label';
+                    label.id = `label-${index}-${oIdx}`;
+
+                    const radio = document.createElement('input');
+                    radio.type = 'radio';
+                    radio.name = `question-${index}`;
+                    radio.value = oIdx;
+                    
+                    // Focus class additions and state tracking
+                    radio.onclick = () => handleSelectOption(index, oIdx);
+
+                    const textSpan = document.createElement('span');
+                    textSpan.innerHTML = opt;
+
+                    label.appendChild(radio);
+                    label.appendChild(textSpan);
+                    optionsList.appendChild(label);
+                });
+
+                card.appendChild(optionsList);
+
+                // Feedback element
+                const feedback = document.createElement('div');
+                feedback.className = 'feedback-text';
+                feedback.id = `feedback-${index}`;
+                card.appendChild(feedback);
+
+                // Focus styling trigger
+                card.onclick = () => {
+                    document.querySelectorAll('.question-card').forEach(c => c.classList.remove('active-focus'));
+                    card.classList.add('active-focus');
+                };
+
+                form.appendChild(card);
+            });
+        }
+
+        // Handle answer selection
+        function handleSelectOption(qIdx, oIdx) {
+            if (isSubmitted) return;
+
+            answeredTracker.add(qIdx);
+            
+            // Update classes in options
+            activeQuestions[qIdx].o.forEach((_, idx) => {
+                document.getElementById(`label-${qIdx}-${idx}`).classList.remove('selected-active');
+            });
+            document.getElementById(`label-${qIdx}-${oIdx}`).classList.add('selected-active');
+
+            // Update Navigation Map state
+            const navBtn = document.getElementById(`nav-btn-${qIdx}`);
+            if (navBtn) {
+                navBtn.classList.add('answered');
+            }
+
+            updateProgressBar();
+        }
+
+        function updateProgressBar() {
+            const count = answeredTracker.size;
+            const total = activeQuestions.length;
+            const percent = total > 0 ? (count / total) * 100 : 0;
+            
+            document.getElementById('progress-bar').style.width = `${percent}%`;
+            document.getElementById('tracker-text').innerText = `Tiến độ: ${count}/${total}`;
+            document.getElementById('map-counter').innerText = `${count}/${total}`;
+        }
+
+        // Navigation map on side panel
+        function renderQuestionNavMap() {
+            const navMap = document.getElementById('question-nav-map');
+            navMap.innerHTML = '';
+
+            activeQuestions.forEach((_, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'q-btn';
+                btn.id = `nav-btn-${index}`;
+                btn.innerText = index + 1;
+                btn.onclick = () => {
+                    const card = document.getElementById(`q-card-${index}`);
+                    if (card) {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        card.click(); // focus effect
+                    }
+                };
+                navMap.appendChild(btn);
+            });
+        }
+
+        // Shuffle current questions & options
+        function shuffleQuiz() {
+            if (isSubmitted) {
+                showToast('Bài thi đã nộp, không thể tráo câu hỏi!');
+                return;
+            }
+
+            // Clear selected options visual
+            answeredTracker.clear();
+            document.getElementById('progress-bar').style.width = '0%';
+            
+            // Re-shuffle array
+            activeQuestions = shuffleArray([...activeQuestions]);
+
+            // Re-shuffle options as well
+            activeQuestions.forEach(item => {
+                const correctText = item.o[item.a];
+                item.o = shuffleArray([...item.o]);
+                item.a = item.o.indexOf(correctText);
+            });
+
+            // Re-render
+            renderQuestions();
+            renderQuestionNavMap();
+            updateProgressBar();
+            showToast('Đã tráo đề và vị trí đáp án ngẫu nhiên!');
+        }
+
+        // Submit actions
+        function submitQuiz() {
+            if (isSubmitted) {
+                showToast('Bài thi đã nộp trước đó.');
+                return;
+            }
+
+            const unAnsweredCount = activeQuestions.length - answeredTracker.size;
+            if (unAnsweredCount > 0) {
+                const conf = confirm(`Bạn còn ${unAnsweredCount} câu chưa làm. Bạn có chắc chắn muốn nộp bài?`);
+                if (!conf) return;
+            }
+
+            stopTimer();
+            isSubmitted = true;
+
+            let score = 0;
+            scoreBreakdown = {};
+
+            // Initialize categories breakdown
+            activeQuestions.forEach(q => {
+                if (!scoreBreakdown[q.source]) {
+                    scoreBreakdown[q.source] = { correct: 0, total: 0 };
+                }
+                scoreBreakdown[q.source].total++;
+            });
+
+            activeQuestions.forEach((item, index) => {
+                const card = document.getElementById(`q-card-${index}`);
+                card.classList.add('evaluated');
+
+                const selectedRadio = document.querySelector(`input[name="question-${index}"]:checked`);
+                const feedbackEl = document.getElementById(`feedback-${index}`);
+                const navBtn = document.getElementById(`nav-btn-${index}`);
+
+                const userAns = selectedRadio ? parseInt(selectedRadio.value) : null;
+                const correctAns = item.a;
+
+                // Highlight correct option in green
+                document.getElementById(`label-${index}-${correctAns}`).classList.add('correct-answer');
+
+                if (userAns === correctAns) {
+                    score++;
+                    scoreBreakdown[item.source].correct++;
+                    feedbackEl.innerText = "✓ Đáp án chính xác";
+                    feedbackEl.className = "feedback-text correct";
+                    if (navBtn) {
+                        navBtn.classList.remove('answered');
+                        navBtn.classList.add('correct');
+                    }
+                } else {
+                    if (userAns !== null) {
+                        document.getElementById(`label-${index}-${userAns}`).classList.add('wrong-answer');
+                    }
+                    feedbackEl.innerText = `✗ Sai rồi. Đáp án đúng: ${item.o[correctAns]}`;
+                    feedbackEl.className = "feedback-text wrong";
+                    if (navBtn) {
+                        navBtn.classList.remove('answered');
+                        navBtn.classList.add('wrong');
+                    }
+                }
+            });
+
+            displayResults(score);
+        }
+
+        // Show Results Page
+        function displayResults(score) {
+            document.getElementById('quiz-panel').style.display = 'none';
+            document.getElementById('header-progress').style.display = 'none';
+            
+            const resultPanel = document.getElementById('result-panel');
+            resultPanel.style.display = 'block';
+
+            // Percentage
+            const finalPercent = Math.round((score / activeQuestions.length) * 100);
+            document.getElementById('score-percent').innerText = `${finalPercent}%`;
+
+            // SVG Animation stroke-dashoffset
+            // Circumference: 2 * Math.PI * r = 2 * 3.14159 * 80 ≈ 502.6
+            const circle = document.getElementById('svg-dash');
+            const strokeOffset = 502 - (502 * finalPercent) / 100;
+            circle.style.strokeDashoffset = strokeOffset;
+
+            // Details
+            document.getElementById('stat-correct').innerText = score;
+            document.getElementById('stat-total').innerText = activeQuestions.length;
+            document.getElementById('stat-time').innerText = formatTimerString(timeElapsed);
+
+            // Breakdown list by subject
+            const breakdownEl = document.getElementById('subject-breakdown');
+            breakdownEl.innerHTML = '';
+
+            for (const [subject, stats] of Object.entries(scoreBreakdown)) {
+                const row = document.createElement('div');
+                row.className = 'breakdown-row';
+                
+                const percent = Math.round((stats.correct / stats.total) * 100);
+                
+                row.innerHTML = `
+                    <div class="subject-info">
+                        <span class="badge ${subject.toLowerCase() === 'javascript' ? 'js' : subject.toLowerCase()}">${subject}</span>
+                        <div style="width: 100px; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow:hidden;">
+                            <div style="width: ${percent}%; height:100%; background: linear-gradient(90deg, #818cf8, #34d399); border-radius:3px;"></div>
+                        </div>
+                    </div>
+                    <div class="score">
+                        <span>${stats.correct}/${stats.total} (${percent}%)</span>
+                    </div>
+                `;
+                breakdownEl.appendChild(row);
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast('Hoàn thành bài thi! Chúc mừng bạn.');
+        }
+
+        // Filter Questions review on result view
+        function filterReview(mode, btnEl) {
+            // Change active button state
+            document.querySelectorAll('.btn-filter').forEach(btn => btn.classList.remove('active'));
+            btnEl.classList.add('active');
+
+            // Show Form on Results Page to review questions
+            const quizContainer = document.getElementById('quiz-panel');
+            quizContainer.style.display = 'grid';
+
+            // Disable all inputs to lock answer review mode
+            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.disabled = true);
+            
+            // Hide control actions except 'home'
+            document.querySelector('.btn-sidebar.submit').style.display = 'none';
+            document.querySelector('.btn-sidebar.shuffle').style.display = 'none';
+
+            activeQuestions.forEach((item, index) => {
+                const card = document.getElementById(`q-card-${index}`);
+                const selectedRadio = document.querySelector(`input[name="question-${index}"]:checked`);
+                const userAns = selectedRadio ? parseInt(selectedRadio.value) : null;
+                const correctAns = item.a;
+
+                if (mode === 'all') {
+                    card.style.display = 'block';
+                } else if (mode === 'correct') {
+                    if (userAns === correctAns) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                } else if (mode === 'wrong') {
+                    if (userAns !== correctAns) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+            
+            // Scroll to the first visible question
+            setTimeout(() => {
+                const firstVisible = document.querySelector('.question-card[style="display: block;"], .question-card:not([style*="display: none"])');
+                if (firstVisible) {
+                    firstVisible.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }, 100);
+        }
+
+        // Restart current configurations
+        function restartQuizWithCurrentConfig() {
+            // Restore hidden quiz buttons
+            document.querySelector('.btn-sidebar.submit').style.display = 'flex';
+            document.querySelector('.btn-sidebar.shuffle').style.display = 'flex';
+
+            document.getElementById('result-panel').style.display = 'none';
+            
+            // Re-shuffle active questions list
+            activeQuestions = shuffleArray([...activeQuestions]);
+            
+            // Re-shuffle options
+            activeQuestions.forEach(item => {
+                const correctText = item.o[item.a];
+                item.o = shuffleArray([...item.o]);
+                item.a = item.o.indexOf(correctText);
+            });
+
+            // Reset trackers
+            answeredTracker.clear();
+            isSubmitted = false;
+            
+            // Re-render
+            renderQuestions();
+            renderQuestionNavMap();
+            updateProgressBar();
+            
+            // Go to Quiz Form Screen
+            document.getElementById('quiz-panel').style.display = 'grid';
+            document.getElementById('header-progress').style.display = 'flex';
+            
+            startTimer();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast('Đang làm lại đề thi với cấu hình hiện tại...');
+        }
+
+        function backToSetup() {
+            // Stop and clear timers
+            stopTimer();
+
+            // Reset views
+            document.getElementById('quiz-panel').style.display = 'none';
+            document.getElementById('result-panel').style.display = 'none';
+            document.getElementById('header-progress').style.display = 'none';
+            
+            document.getElementById('setup-panel').style.display = 'block';
+
+            // Reset navigation layouts
+            document.querySelector('.btn-sidebar.submit').style.display = 'flex';
+            document.querySelector('.btn-sidebar.shuffle').style.display = 'flex';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            showToast('Quay lại giao diện cấu hình.');
+        }
+
+        // Load application data on startup
+        window.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>

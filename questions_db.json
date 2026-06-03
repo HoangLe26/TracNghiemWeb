@@ -1,0 +1,2150 @@
+[
+  {
+    "q": "What does HTML stand for?",
+    "o": [
+      "Hyper Text Markup Language",
+      "Home Tool Markup Language",
+      "Hyperlinks and Text Markup Language"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "Who is making the Web standards?",
+    "o": [
+      "The World Wide Web Consortium (W3C)",
+      "Google",
+      "Microsoft",
+      "Mozilla"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "Choose the correct HTML element for the largest heading:",
+    "o": [
+      "&lt;heading&gt;",
+      "&lt;h6&gt;",
+      "&lt;h1&gt;",
+      "&lt;head&gt;"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML element for inserting a line break?",
+    "o": [
+      "&lt;break&gt;",
+      "&lt;br&gt;",
+      "&lt;lb&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML for adding a background color?",
+    "o": [
+      "&lt;body bg=\"yellow\"&gt;",
+      "&lt;body style=\"background-color:yellow;\"&gt;",
+      "&lt;background&gt;yellow&lt;/background&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "Choose the correct HTML element to define important text:",
+    "o": [
+      "&lt;important&gt;",
+      "&lt;i&gt;",
+      "&lt;strong&gt;",
+      "&lt;bold&gt;"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "Choose the correct HTML element to define emphasized text:",
+    "o": [
+      "&lt;em&gt;",
+      "&lt;italic&gt;",
+      "&lt;i&gt;"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML for creating a hyperlink?",
+    "o": [
+      "&lt;a href=\"http://www.w3schools.com\"&gt;W3Schools&lt;/a&gt;",
+      "&lt;a&gt;http://www.w3schools.com&lt;/a&gt;",
+      "&lt;a url=\"http://www.w3schools.com\"&gt;W3Schools.com&lt;/a&gt;",
+      "&lt;a name=\"http://www.w3schools.com\"&gt;W3Schools.com&lt;/a&gt;"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "Which character is used to indicate an end tag?",
+    "o": [
+      "*",
+      "^",
+      "&lt;",
+      "/"
+    ],
+    "a": 3,
+    "source": "HTML"
+  },
+  {
+    "q": "How can you open a link in a new tab/browser window?",
+    "o": [
+      "&lt;a href=\"url\" target=\"new\"&gt;",
+      "&lt;a href=\"url\" new&gt;",
+      "&lt;a href=\"url\" target=\"_blank\"&gt;"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "Which of these elements are all &lt;table&gt; elements?",
+    "o": [
+      "&lt;table&gt; &lt;head&gt; &lt;tfoot&gt;",
+      "&lt;table&gt; &lt;tr&gt; &lt;td&gt;",
+      "&lt;thead&gt; &lt;body&gt; &lt;tr&gt;",
+      "&lt;table&gt; &lt;tr&gt; &lt;tt&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "Inline elements are normally displayed without starting a new line.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "How can you make a numbered list?",
+    "o": [
+      "&lt;ul&gt;",
+      "&lt;list&gt;",
+      "&lt;ol&gt;",
+      "&lt;dl&gt;"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "How can you make a bulleted list?",
+    "o": [
+      "&lt;ol&gt;",
+      "&lt;ul&gt;",
+      "&lt;list&gt;",
+      "&lt;dl&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML for making a checkbox?",
+    "o": [
+      "&lt;input type=\"check\"&gt;",
+      "&lt;checkbox&gt;",
+      "&lt;input type=\"checkbox\"&gt;",
+      "&lt;check&gt;"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML for making a text input field?",
+    "o": [
+      "&lt;input type=\"textfield\"&gt;",
+      "&lt;textinput&gt;",
+      "&lt;input type=\"text\"&gt;",
+      "&lt;input type=\"string\"&gt;"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML for making a drop-down list?",
+    "o": [
+      "&lt;input type=\"dropdown\"&gt;",
+      "&lt;select&gt;",
+      "&lt;list&gt;",
+      "&lt;dropdown&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML for making a text area?",
+    "o": [
+      "&lt;input type=\"textarea\"&gt;",
+      "&lt;textarea&gt;",
+      "&lt;textbox&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML for inserting an image?",
+    "o": [
+      "&lt;img href=\"image.gif\" alt=\"MyImage\"&gt;",
+      "&lt;img src=\"image.gif\" alt=\"MyImage\"&gt;",
+      "&lt;image src=\"image.gif\" alt=\"MyImage\"&gt;",
+      "&lt;img&gt;image.gif&lt;/img&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML for inserting a background image?",
+    "o": [
+      "&lt;body style=\"background-image:url(background.gif)\"&gt;",
+      "&lt;background source=\"background.gif\"&gt;",
+      "&lt;body bg=\"background.gif\"&gt;"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "An &lt;iframe&gt; is used to display a web page within a web page.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "HTML comments start with &lt;!-- and end with --&gt;",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "Block elements are normally displayed without starting a new line.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "Which HTML element defines the title of a document?",
+    "o": [
+      "&lt;meta&gt;",
+      "&lt;head&gt;",
+      "&lt;title&gt;"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "Which HTML attribute specifies an alternate text for an image, if the image cannot be displayed?",
+    "o": [
+      "alt",
+      "title",
+      "src",
+      "longdesc"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "Which doctype is correct for HTML5?",
+    "o": [
+      "&lt;!DOCTYPE HTML5&gt;",
+      "&lt;!DOCTYPE html&gt;",
+      "&lt;DOCTYPE html&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "Which HTML element is used to specify a footer for a document or section?",
+    "o": [
+      "&lt;section&gt;",
+      "&lt;footer&gt;",
+      "&lt;bottom&gt;",
+      "&lt;id=\"footer\"&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "In HTML, you can embed SVG elements directly into an HTML page.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML element for playing video files?",
+    "o": [
+      "&lt;media&gt;",
+      "&lt;video&gt;",
+      "&lt;movie&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "What is the correct HTML element for playing audio files?",
+    "o": [
+      "&lt;audio&gt;",
+      "&lt;sound&gt;",
+      "&lt;music&gt;"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "The HTML global attribute, \"contenteditable\" is used to:",
+    "o": [
+      "Specify whether the content of an element should be editable or not",
+      "Specifies a context menu for an element",
+      "Updates content from the server",
+      "Specifies that the element is not relevant"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "In HTML, onblur and onfocus are:",
+    "o": [
+      "HTML elements",
+      "Style attributes",
+      "Event attributes"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "Graphics defined by SVG is in which format?",
+    "o": [
+      "HTML",
+      "XML",
+      "CSS"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "The HTML &lt;canvas&gt; element is used to:",
+    "o": [
+      "manipulate data",
+      "create draggable elements",
+      "draw graphics",
+      "display database records"
+    ],
+    "a": 2,
+    "source": "HTML"
+  },
+  {
+    "q": "In HTML, which attribute is used to specify that an input field must be filled out?",
+    "o": [
+      "validate",
+      "required",
+      "placeholder",
+      "name"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "Which input type defines a slider control?",
+    "o": [
+      "slider",
+      "range",
+      "controls",
+      "number"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "Which HTML element is used to display a scalar measurement within a known range?",
+    "o": [
+      "&lt;meter&gt;",
+      "&lt;gauge&gt;",
+      "&lt;range&gt;",
+      "&lt;measure&gt;"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "Which HTML element defines navigation links?",
+    "o": [
+      "&lt;nav&gt;",
+      "&lt;navigation&gt;",
+      "&lt;navigate&gt;"
+    ],
+    "a": 0,
+    "source": "HTML"
+  },
+  {
+    "q": "In HTML, what does the &lt;aside&gt; element define?",
+    "o": [
+      "The sidebar of a webpage",
+      "Content aside from the page content",
+      "A navigation menu"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "Which HTML element is used to specify a header for a document or section?",
+    "o": [
+      "&lt;top&gt;",
+      "&lt;header&gt;",
+      "&lt;head&gt;",
+      "&lt;section&gt;"
+    ],
+    "a": 1,
+    "source": "HTML"
+  },
+  {
+    "q": "What does CSS stand for?",
+    "o": [
+      "Cascading Style Sheets",
+      "Computer Style Sheets",
+      "Creative Style Sheets",
+      "Colorful Style Sheets"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "What is the correct HTML for referring to an external style sheet?",
+    "o": [
+      "&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\"&gt;",
+      "&lt;style src=\"mystyle.css\"&gt;",
+      "&lt;stylesheet&gt;mystyle.css&lt;/stylesheet&gt;"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "Where in an HTML document is the correct place to refer to an external style sheet?",
+    "o": [
+      "In the &lt;body&gt; section",
+      "In the &lt;head&gt; section",
+      "At the end of the document"
+    ],
+    "a": 1,
+    "source": "CSS"
+  },
+  {
+    "q": "Which HTML tag is used to define an internal style sheet?",
+    "o": [
+      "&lt;css&gt;",
+      "&lt;script&gt;",
+      "&lt;style&gt;"
+    ],
+    "a": 2,
+    "source": "CSS"
+  },
+  {
+    "q": "Which HTML attribute is used to define inline styles?",
+    "o": [
+      "style",
+      "class",
+      "styles",
+      "font"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "Which is the correct CSS syntax?",
+    "o": [
+      "body {color: black;}",
+      "{body:color=black;}",
+      "{body;color:black;}",
+      "body:color=black;"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you insert a comment in a CSS file?",
+    "o": [
+      "/* this is a comment */",
+      "// this is a comment",
+      "// this is a comment //",
+      "' this is a comment"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "Which property is used to change the background color?",
+    "o": [
+      "color",
+      "bgcolor",
+      "background-color"
+    ],
+    "a": 2,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you add a background color for all &lt;h1&gt; elements?",
+    "o": [
+      "h1 {background-color:#FFFFFF;}",
+      "all.h1 {background-color:#FFFFFF;}",
+      "h1.all {background-color:#FFFFFF;}"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "Which CSS property is used to change the text color of an element?",
+    "o": [
+      "fgcolor",
+      "color",
+      "text-color"
+    ],
+    "a": 1,
+    "source": "CSS"
+  },
+  {
+    "q": "Which CSS property controls the text size?",
+    "o": [
+      "text-size",
+      "font-style",
+      "text-style",
+      "font-size"
+    ],
+    "a": 3,
+    "source": "CSS"
+  },
+  {
+    "q": "What is the correct CSS syntax for making all the &lt;p&gt; elements bold?",
+    "o": [
+      "p {text-size:bold;}",
+      "&lt;p style=\"font-size:bold;\"&gt;",
+      "p {font-weight:bold;}",
+      "&lt;p style=\"text-size:bold;\"&gt;"
+    ],
+    "a": 2,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you display hyperlinks without an underline?",
+    "o": [
+      "a {text-decoration:none;}",
+      "a {decoration:no-underline;}",
+      "a {underline:none;}",
+      "a {text-decoration:no-underline;}"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you make each word in a text start with a capital letter?",
+    "o": [
+      "text-style:capitalize",
+      "text-transform:capitalize",
+      "transform:capitalize",
+      "You can't do that with CSS"
+    ],
+    "a": 1,
+    "source": "CSS"
+  },
+  {
+    "q": "Which property is used to change the font of an element?",
+    "o": [
+      "font-family",
+      "font-weight",
+      "font-style"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you make the text bold?",
+    "o": [
+      "style:bold;",
+      "font:bold;",
+      "font-weight:bold;"
+    ],
+    "a": 2,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you display a border like this: The top border = 10 pixels, the bottom border = 5 pixels, the left border = 20 pixels, and the right border = 1pixel?",
+    "o": [
+      "border-width:10px 1px 5px 20px;",
+      "border-width:5px 20px 10px 1px;",
+      "border-width:10px 5px 20px 1px;",
+      "border-width:10px 20px 5px 1px;"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "Which property is used to change the left margin of an element?",
+    "o": [
+      "padding-left",
+      "margin-left",
+      "indent"
+    ],
+    "a": 1,
+    "source": "CSS"
+  },
+  {
+    "q": "When using the padding property; are you allowed to use negative values?",
+    "o": [
+      "Yes",
+      "No"
+    ],
+    "a": 1,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you make a list that lists its items with squares?",
+    "o": [
+      "list-style-type: square;",
+      "list-type: square;",
+      "list: square;"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you select an element with id \"demo\"?",
+    "o": [
+      "#demo",
+      ".demo",
+      "demo",
+      "*demo"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you select elements with class name \"test\"?",
+    "o": [
+      "#test",
+      ".test",
+      "test",
+      "*test"
+    ],
+    "a": 1,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you select all p elements inside a div element?",
+    "o": [
+      "div p",
+      "div + p",
+      "div.p"
+    ],
+    "a": 0,
+    "source": "CSS"
+  },
+  {
+    "q": "How do you group selectors?",
+    "o": [
+      "Separate each selector with a plus sign",
+      "Separate each selector with a space",
+      "Separate each selector with a comma"
+    ],
+    "a": 2,
+    "source": "CSS"
+  },
+  {
+    "q": "What is the default value of the position property?",
+    "o": [
+      "relative",
+      "fixed",
+      "absolute",
+      "static"
+    ],
+    "a": 3,
+    "source": "CSS"
+  },
+  {
+    "q": "Inside which HTML element do we put the JavaScript?",
+    "o": [
+      "&lt;js&gt;",
+      "&lt;javascript&gt;",
+      "&lt;scripting&gt;",
+      "&lt;script&gt;"
+    ],
+    "a": 3,
+    "source": "JavaScript"
+  },
+  {
+    "q": "Where is the correct place to insert a JavaScript?",
+    "o": [
+      "The &lt;head&gt; section",
+      "The &lt;body&gt; section",
+      "Both the &lt;head&gt; section and the &lt;body&gt; section are correct"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "What is the correct syntax for referring to an external script called 'app.js'?",
+    "o": [
+      "&lt;script name=\"app.js\"&gt;",
+      "&lt;script href=\"app.js\"&gt;",
+      "&lt;script src=\"app.js\"&gt;"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "The external JavaScript file must contain the &lt;script&gt; tag.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How do you write 'Hello World' in an alert box?",
+    "o": [
+      "msgBox(\"Hello World\");",
+      "alertBox(\"Hello World\");",
+      "msg(\"Hello World\");",
+      "alert(\"Hello World\");"
+    ],
+    "a": 3,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How do you create a function in JavaScript?",
+    "o": [
+      "function myFunction()",
+      "function:myFunction()",
+      "function = myFunction()"
+    ],
+    "a": 0,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How do you call a function named 'myFunction'?",
+    "o": [
+      "call function myFunction()",
+      "myFunction()",
+      "call myFunction()"
+    ],
+    "a": 1,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How to write an IF statement in JavaScript?",
+    "o": [
+      "if i = 5 then",
+      "if i == 5 then",
+      "if i = 5",
+      "if (i == 5)"
+    ],
+    "a": 3,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+    "o": [
+      "if i =! 5 then",
+      "if (i != 5)",
+      "if i &lt;&gt; 5",
+      "if (i &lt;&gt; 5)"
+    ],
+    "a": 1,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How does a WHILE loop start?",
+    "o": [
+      "while (i &lt;= 10; i++)",
+      "while i = 1 to 10",
+      "while (i &lt;= 10)"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How does a FOR loop start?",
+    "o": [
+      "for (i &lt;= 5; i++)",
+      "for (i = 0; i &lt;= 5)",
+      "for (i = 0; i &lt;= 5; i++)",
+      "for i = 1 to 5"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How can you add a comment in a JavaScript?",
+    "o": [
+      "'This is a comment",
+      "&lt;!--This is a comment--&gt;",
+      "//This is a comment"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How to insert a comment that has more than one line?",
+    "o": [
+      "/*This comment has<br>more than one line*/",
+      "&lt;!--This comment has<br>more than one line--&gt;",
+      "//This comment has<br>more than one line//"
+    ],
+    "a": 0,
+    "source": "JavaScript"
+  },
+  {
+    "q": "What is the correct way to write a JavaScript array?",
+    "o": [
+      "var colors = 1 = (\"red\"), 2 = (\"green\"), 3 = (\"blue\")",
+      "var colors = [\"red\", \"green\", \"blue\"]",
+      "var colors = \"red\", \"green\", \"blue\"",
+      "var colors = (1:\"red\", 2:\"green\", 3:\"blue\")"
+    ],
+    "a": 1,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How do you round the number 7.25, to the nearest integer?",
+    "o": [
+      "Math.rnd(7.25)",
+      "round(7.25)",
+      "rnd(7.25)",
+      "Math.round(7.25)"
+    ],
+    "a": 3,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How do you find the number with the highest value of x and y?",
+    "o": [
+      "ceil(x, y)",
+      "Math.ceil(x, y)",
+      "Math.max(x, y)",
+      "top(x, y)"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "What is the correct JavaScript syntax for opening a new window called 'w2'?",
+    "o": [
+      "w2 = window.open(\"http://www.example.com\");",
+      "w2 = window.new(\"http://www.example.com\");"
+    ],
+    "a": 0,
+    "source": "JavaScript"
+  },
+  {
+    "q": "JavaScript is the same as Java.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How can you detect the client's browser name?",
+    "o": [
+      "client.navName",
+      "navigator.appName",
+      "browser.name"
+    ],
+    "a": 1,
+    "source": "JavaScript"
+  },
+  {
+    "q": "Which event occurs when the user clicks on an HTML element?",
+    "o": [
+      "onmouseclick",
+      "onchange",
+      "onclick",
+      "onmouseover"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "How do you declare a JavaScript variable?",
+    "o": [
+      "var carName;",
+      "v carName;",
+      "variable carName;"
+    ],
+    "a": 0,
+    "source": "JavaScript"
+  },
+  {
+    "q": "Which operator is used to assign a value to a variable?",
+    "o": [
+      "-",
+      "x",
+      "=",
+      "*"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "What will the following code return: Boolean(10 &gt; 9)",
+    "o": [
+      "NaN",
+      "true",
+      "false"
+    ],
+    "a": 1,
+    "source": "JavaScript"
+  },
+  {
+    "q": "Is JavaScript case-sensitive?",
+    "o": [
+      "No",
+      "Yes"
+    ],
+    "a": 1,
+    "source": "JavaScript"
+  },
+  {
+    "q": "Which built-in property returns the length of a string?",
+    "o": [
+      "size()",
+      "length()",
+      "length",
+      "index()"
+    ],
+    "a": 2,
+    "source": "JavaScript"
+  },
+  {
+    "q": "What is Bootstrap?",
+    "o": [
+      "A CSS framework for developing responsive web pages",
+      "A JavaScript library",
+      "A server-side scripting language"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Who developed Bootstrap?",
+    "o": [
+      "Google",
+      "Twitter",
+      "Facebook",
+      "Microsoft"
+    ],
+    "a": 1,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Is Bootstrap completely free to use?",
+    "o": [
+      "Yes",
+      "No"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "The Bootstrap grid system works across multiple devices.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class provides a responsive fixed width container?",
+    "o": [
+      ".container-fixed",
+      ".container-fluid",
+      ".container"
+    ],
+    "a": 2,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class provides a full width container, spanning the entire width of the viewport?",
+    "o": [
+      ".container-fluid",
+      ".container-full",
+      ".container"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "The Bootstrap grid system is based on how many columns?",
+    "o": [
+      "6",
+      "9",
+      "12",
+      "16"
+    ],
+    "a": 2,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class adds zebra-stripes to a table?",
+    "o": [
+      ".even and .odd",
+      ".table-striped",
+      ".table-zebra",
+      ".table-bordered"
+    ],
+    "a": 1,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class shapes an image to a circle?",
+    "o": [
+      ".img-round",
+      ".img-circle / .rounded-circle",
+      ".img-thumbnail"
+    ],
+    "a": 1,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class is used to create a big box for calling extra attention?",
+    "o": [
+      ".big-box",
+      ".container",
+      ".jumbotron"
+    ],
+    "a": 2,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which button class is used to create a large button?",
+    "o": [
+      ".btn-xl",
+      ".btn-large",
+      ".btn-lg"
+    ],
+    "a": 2,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class is used to create a block level button (spans the full width of the parent)?",
+    "o": [
+      ".btn-block",
+      ".btn-full",
+      ".btn-wide"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which contextual class indicates a successful or positive action?",
+    "o": [
+      ".text-success / .btn-success",
+      ".text-primary / .btn-primary",
+      ".text-info / .btn-info"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class is used to create a badge?",
+    "o": [
+      ".label",
+      ".tag",
+      ".badge"
+    ],
+    "a": 2,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class is used to create a basic pagination?",
+    "o": [
+      ".pages",
+      ".pagination",
+      ".nav"
+    ],
+    "a": 1,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class is used to create a basic list group?",
+    "o": [
+      ".list-group",
+      ".group-list",
+      ".ul-group"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class creates a navigation bar?",
+    "o": [
+      ".navbar",
+      ".nav-menu",
+      ".navigation"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which plugin is used to cycle through elements, like a slideshow?",
+    "o": [
+      ".slideshow",
+      ".scrollspy",
+      ".carousel"
+    ],
+    "a": 2,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class is used to create a dropdown menu?",
+    "o": [
+      ".dropdown",
+      ".select",
+      ".menu-drop"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class adds a contextual background color?",
+    "o": [
+      ".bg-color-*",
+      ".bg-* (e.g., .bg-primary)",
+      ".background-*"
+    ],
+    "a": 1,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class indicates an active state?",
+    "o": [
+      ".active",
+      ".current",
+      ".selected"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class hides an element on all devices in Bootstrap 4/5?",
+    "o": [
+      ".hide",
+      ".d-none",
+      ".invisible"
+    ],
+    "a": 1,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "How do you create a progress bar?",
+    "o": [
+      ".progress-bar",
+      ".bar",
+      ".progress-meter"
+    ],
+    "a": 0,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class is used for a flexible and extensible content container with multiple variants and options (Bootstrap 4/5)?",
+    "o": [
+      ".panel",
+      ".card",
+      ".well"
+    ],
+    "a": 1,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which class creates a spinner/loader?",
+    "o": [
+      ".loader",
+      ".spinner-border",
+      ".loading"
+    ],
+    "a": 1,
+    "source": "Bootstrap"
+  },
+  {
+    "q": "Which of the following is correct?",
+    "o": [
+      "jQuery is a JavaScript Library",
+      "jQuery is a JSON Library"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "jQuery uses CSS selectors to select elements.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "Which sign does jQuery use as a shortcut for jQuery?",
+    "o": [
+      "the ? sign",
+      "the $ sign",
+      "the % sign"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "With jQuery, look at the following selector: $(\"div\"). What does it select?",
+    "o": [
+      "All div elements",
+      "The first div element"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "Is jQuery a library for client scripting or server scripting?",
+    "o": [
+      "Client scripting",
+      "Server scripting"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "Is it possible to use jQuery together with AJAX?",
+    "o": [
+      "Yes",
+      "No"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "The jQuery html() method works for both HTML and XML documents.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "What is the correct jQuery code to set the background color of all p elements to red?",
+    "o": [
+      "$(\"p\").layout(\"background-color\",\"red\");",
+      "$(\"p\").css(\"background-color\",\"red\");",
+      "$(\"p\").style(\"background-color\",\"red\");",
+      "$(\"p\").manipulate(\"background-color\",\"red\");"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "With jQuery, look at the following selector: $(\"div.intro\"). What does it select?",
+    "o": [
+      "The first div element with class=\"intro\"",
+      "All div elements with id=\"intro\"",
+      "All div elements with class=\"intro\""
+    ],
+    "a": 2,
+    "source": "jQuery"
+  },
+  {
+    "q": "Which jQuery method is used to hide selected elements?",
+    "o": [
+      "hidden()",
+      "hide()",
+      "visible(false)",
+      "display(none)"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "Which jQuery method is used to set one or more style properties for selected elements?",
+    "o": [
+      "style()",
+      "css()",
+      "html()"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "Which jQuery method is used to perform an asynchronous HTTP request?",
+    "o": [
+      "jQuery.ajaxAsync()",
+      "jQuery.ajax()",
+      "jQuery.ajaxSetup()"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "What is the correct jQuery code for making all div elements 100 pixels high?",
+    "o": [
+      "$(\"div\").height=\"100\"",
+      "$(\"div\").height(100)",
+      "$(\"div\").yPos(100)"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "Look at the following jQuery selector: $(\"p#intro\"). What does it select?",
+    "o": [
+      "The p element with id=\"intro\"",
+      "The first p element with id=\"intro\"",
+      "The p element with class=\"intro\""
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "Which jQuery statement should you use if you want to hide all &lt;p&gt; elements?",
+    "o": [
+      "$(\"p\").hide();",
+      "hide(\"p\");",
+      "$(\"p\").hide;"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "Which jQuery method should you use if you want to make an element fade out?",
+    "o": [
+      "fadeOut()",
+      "fade()",
+      "fadeDown()"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "What is the correct jQuery code to hide all &lt;p&gt; elements with class=\"test\"",
+    "o": [
+      "$(\"p .test\").hide();",
+      "$(\"p.test\").hide();",
+      "$(\"p#test\").hide();",
+      "$(\"#test p\").hide();"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "What is the correct jQuery code to set the text of a selected element to \"Hello World\"?",
+    "o": [
+      "text(\"Hello World\");",
+      "$(\"this\").text(\"Hello World\");",
+      "$(\"this\").html(\"Hello World\");",
+      "text(\"this\", \"Hello World\");"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "Look at the following jQuery selector: $(\"[href$='.jpg']\"). What does it select?",
+    "o": [
+      "All elements with a href attribute that contains \".jpg\"",
+      "All elements with a href attribute that starts with \".jpg\"",
+      "All elements with a href attribute that ends with \".jpg\""
+    ],
+    "a": 2,
+    "source": "jQuery"
+  },
+  {
+    "q": "What is the correct jQuery code to get the inner HTML of an element?",
+    "o": [
+      "html()",
+      "innerHTML()",
+      "getContent()",
+      "val()"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "What is the correct jQuery code to get the value of an input field?",
+    "o": [
+      "$(\"input\").value();",
+      "$(\"input\").val();",
+      "$(\"input\").text();"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "The animate() method can be used to animate ALL CSS properties?",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 0,
+    "source": "jQuery"
+  },
+  {
+    "q": "Which jQuery method is used to switch between adding/removing one or more classes (for CSS) from selected elements?",
+    "o": [
+      "switchClass()",
+      "toggleClass()",
+      "altClass()",
+      "switch()"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "jQuery is a W3C standard.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "jQuery"
+  },
+  {
+    "q": "Which jQuery method is used to remove selected elements?",
+    "o": [
+      "remove()",
+      "empty()",
+      "detach()",
+      "all of the above"
+    ],
+    "a": 3,
+    "source": "jQuery"
+  },
+  {
+    "q": "What is MySQL?",
+    "o": [
+      "Developed, distributed, and supported by Oracle Corporation",
+      "All the options are correct",
+      "Cross-platform, open-source and free",
+      "A relational database management system"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which SQL statement is used to extract data from a database?",
+    "o": [
+      "SELECT",
+      "GET",
+      "EXTRACT",
+      "OPEN"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which SQL statement is used to update data in a database?",
+    "o": [
+      "UPDATE",
+      "SAVE",
+      "SAVE AS",
+      "MODIFY"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which SQL statement is used to delete data from a database?",
+    "o": [
+      "REMOVE",
+      "COLLAPSE",
+      "DELETE"
+    ],
+    "a": 2,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which SQL statement is used to insert new data in a database?",
+    "o": [
+      "INSERT INTO",
+      "ADD RECORD",
+      "INSERT NEW",
+      "ADD NEW"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how do you select a column named \"FirstName\" from a table named \"Persons\"?",
+    "o": [
+      "EXTRACT FirstName FROM Persons",
+      "SELECT FirstName FROM Persons",
+      "SELECT Persons.FirstName"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how do you select all the columns from a table named \"Persons\"?",
+    "o": [
+      "SELECT * FROM Persons",
+      "SELECT Persons",
+      "SELECT [all] FROM Persons",
+      "SELECT *.Persons"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how do you select all the records from a table named \"Persons\" where the value of the column \"FirstName\" is \"Peter\"?",
+    "o": [
+      "SELECT * FROM Persons WHERE FirstName&lt;&gt;'Peter'",
+      "SELECT * FROM Persons WHERE FirstName='Peter'",
+      "SELECT [all] FROM Persons WHERE FirstName='Peter'",
+      "SELECT [all] FROM Persons WHERE FirstName LIKE 'Peter'"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how do you select all the records from a table named \"Persons\" where the value of the column \"FirstName\" starts with an \"a\"?",
+    "o": [
+      "SELECT * FROM Persons WHERE FirstName LIKE '%a'",
+      "SELECT * FROM Persons WHERE FirstName='%a%'",
+      "SELECT * FROM Persons WHERE FirstName LIKE 'a%'",
+      "SELECT * FROM Persons WHERE FirstName='a'"
+    ],
+    "a": 2,
+    "source": "MySQL"
+  },
+  {
+    "q": "The OR operator displays a record if ANY conditions listed are true. The AND operator displays a record if ALL of the conditions listed are true",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how do you select all the records from a table named \"Persons\" where the \"FirstName\" is \"Peter\" and \"LastName\" is \"Jackson\"?",
+    "o": [
+      "SELECT FirstName='Peter', LastName='Jackson' FROM Persons",
+      "SELECT * FROM Persons WHERE FirstName='Peter' AND LastName='Jackson'",
+      "SELECT * FROM Persons WHERE FirstName&lt;&gt;'Peter' AND LastName&lt;&gt;'Jackson'"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how do you select all the records from a table named \"Persons\" where the \"LastName\" is alphabetically between (and including) \"Hansen\" and \"Pettersen\"?",
+    "o": [
+      "SELECT * FROM Persons WHERE LastName BETWEEN 'Hansen' AND 'Pettersen'",
+      "SELECT LastName&gt;'Hansen' AND LastName&lt;'Pettersen' FROM Persons",
+      "SELECT * FROM Persons WHERE LastName&gt;'Hansen' AND LastName&lt;'Pettersen'"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which SQL statement is used to return only different values?",
+    "o": [
+      "SELECT UNIQUE",
+      "SELECT DISTINCT",
+      "SELECT DIFFERENT"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which SQL keyword is used to sort the result-set?",
+    "o": [
+      "ORDER BY",
+      "SORT BY",
+      "ORDER",
+      "SORT"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how can you return all the records from a table named \"Persons\" sorted descending by \"FirstName\"?",
+    "o": [
+      "SELECT * FROM Persons SORT 'FirstName' DESC",
+      "SELECT * FROM Persons ORDER FirstName DESC",
+      "SELECT * FROM Persons SORT BY 'FirstName' DESC",
+      "SELECT * FROM Persons ORDER BY FirstName DESC"
+    ],
+    "a": 3,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how can you insert \"Olsen\" as the \"LastName\" in the \"Persons\" table?",
+    "o": [
+      "INSERT ('Olsen') INTO Persons (LastName)",
+      "INSERT INTO Persons (LastName) VALUES ('Olsen')",
+      "INSERT INTO Persons ('Olsen') INTO LastName"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "How can you change \"Hansen\" into \"Nilsen\" in the \"LastName\" column in the Persons table?",
+    "o": [
+      "UPDATE Persons SET LastName='Nilsen' WHERE LastName='Hansen'",
+      "MODIFY Persons SET LastName='Hansen' INTO LastName='Nilsen'",
+      "MODIFY Persons SET LastName='Nilsen' WHERE LastName='Hansen'",
+      "UPDATE Persons SET LastName='Hansen' INTO LastName='Nilsen'"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how can you delete the records where the \"FirstName\" is \"Peter\" in the Persons Table?",
+    "o": [
+      "DELETE ROW FirstName='Peter' FROM Persons",
+      "DELETE FirstName='Peter' FROM Persons",
+      "DELETE FROM Persons WHERE FirstName='Peter'"
+    ],
+    "a": 2,
+    "source": "MySQL"
+  },
+  {
+    "q": "With MySQL, how can you return the number of records in the \"Persons\" table?",
+    "o": [
+      "SELECT COLUMNS(*) FROM Persons",
+      "SELECT COUNT() FROM Persons",
+      "SELECT COUNT(*) FROM Persons",
+      "SELECT NO(*) FROM Persons"
+    ],
+    "a": 2,
+    "source": "MySQL"
+  },
+  {
+    "q": "What is the most common type of join?",
+    "o": [
+      "INNER JOIN",
+      "JOINED",
+      "OUTER JOIN",
+      "JOINED TABLE"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which operator is used to select values within a range?",
+    "o": [
+      "RANGE",
+      "BETWEEN",
+      "WITHIN"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "The NOT NULL constraint enforces a column to not accept NULL values.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which operator is used to search for a specified pattern in a column?",
+    "o": [
+      "GET",
+      "LIKE",
+      "FROM"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which SQL statement is used to create a database table called 'Customers'?",
+    "o": [
+      "CREATE TABLE Customers",
+      "CREATE DB Customers",
+      "CREATE DATABASE TAB Customers"
+    ],
+    "a": 0,
+    "source": "MySQL"
+  },
+  {
+    "q": "Which MySQL data type can be used to store a string?",
+    "o": [
+      "DOUBLE",
+      "VARCHAR",
+      "DATE",
+      "INT"
+    ],
+    "a": 1,
+    "source": "MySQL"
+  },
+  {
+    "q": "What does PHP stand for?",
+    "o": [
+      "Private Home Page",
+      "Personal Hypertext Processor",
+      "PHP: Hypertext Preprocessor"
+    ],
+    "a": 2,
+    "source": "PHP"
+  },
+  {
+    "q": "PHP server scripts are surrounded by delimiters, which?",
+    "o": [
+      "&lt;script&gt;...&lt;/script&gt;",
+      "&lt;?php ... ?&gt;",
+      "&lt;?php&gt;...&lt;/?&gt;",
+      "&lt;&amp;&gt;...&lt;/&amp;&gt;"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "How do you write \"Hello World\" in PHP?",
+    "o": [
+      "echo \"Hello World\";",
+      "Document.Write(\"Hello World\");",
+      "\"Hello World\";"
+    ],
+    "a": 0,
+    "source": "PHP"
+  },
+  {
+    "q": "All variables in PHP start with which symbol?",
+    "o": [
+      "!",
+      "&amp;",
+      "$"
+    ],
+    "a": 2,
+    "source": "PHP"
+  },
+  {
+    "q": "What is the correct way to end a PHP statement?",
+    "o": [
+      "New line",
+      "&lt;/php&gt;",
+      ";",
+      "."
+    ],
+    "a": 2,
+    "source": "PHP"
+  },
+  {
+    "q": "The PHP syntax is most similar to:",
+    "o": [
+      "JavaScript",
+      "VBScript",
+      "Perl and C"
+    ],
+    "a": 2,
+    "source": "PHP"
+  },
+  {
+    "q": "How do you get information from a form that is submitted using the \"get\" method?",
+    "o": [
+      "Request.QueryString;",
+      "$_GET[];",
+      "Request.Form;"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "When using the POST method, variables are displayed in the URL:",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 0,
+    "source": "PHP"
+  },
+  {
+    "q": "In PHP you can use both single quotes ( ' ' ) and double quotes ( \" \" ) for strings:",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 0,
+    "source": "PHP"
+  },
+  {
+    "q": "Include files must have the file extension \".inc\"",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "What is the correct way to include the file \"time.inc\" ?",
+    "o": [
+      "&lt;?php include \"time.inc\"; ?&gt;",
+      "&lt;?php include file=\"time.inc\"; ?&gt;",
+      "&lt;!-- include file=\"time.inc\" --&gt;",
+      "&lt;?php include:\"time.inc\"; ?&gt;"
+    ],
+    "a": 0,
+    "source": "PHP"
+  },
+  {
+    "q": "What is the correct way to create a function in PHP?",
+    "o": [
+      "create myFunction()",
+      "new_function myFunction()",
+      "function myFunction()"
+    ],
+    "a": 2,
+    "source": "PHP"
+  },
+  {
+    "q": "What is the correct way to open the file \"time.txt\" as readable?",
+    "o": [
+      "open(\"time.txt\",\"read\");",
+      "fopen(\"time.txt\",\"read\");",
+      "open(\"time.txt\");",
+      "fopen(\"time.txt\",\"r\");"
+    ],
+    "a": 3,
+    "source": "PHP"
+  },
+  {
+    "q": "PHP allows you to send emails directly from a script.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "Which superglobal variable holds information about headers, paths, and script locations?",
+    "o": [
+      "$_SERVER",
+      "$_GLOBALS",
+      "$_GET",
+      "$_SESSION"
+    ],
+    "a": 0,
+    "source": "PHP"
+  },
+  {
+    "q": "What is the correct way to add 1 to the $count variable?",
+    "o": [
+      "$count =+1",
+      "$count++;",
+      "++count",
+      "count++;"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "What is a correct way to add a comment in PHP?",
+    "o": [
+      "&lt;!--...--&gt;",
+      "&lt;comment&gt;...&lt;/comment&gt;",
+      "/*...*/",
+      "*...\\*"
+    ],
+    "a": 2,
+    "source": "PHP"
+  },
+  {
+    "q": "PHP can be run on Microsoft Windows IIS(Internet Information Server):",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "The die() and exit() functions do the exact same thing.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "Which one of these variables has an illegal name?",
+    "o": [
+      "$my-Var",
+      "$myVar",
+      "$my_Var"
+    ],
+    "a": 0,
+    "source": "PHP"
+  },
+  {
+    "q": "How do you create a cookie in PHP?",
+    "o": [
+      "makecookie()",
+      "setcookie()",
+      "createcookie()"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "In PHP, the only way to output text is with echo.",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "How do you create an array in PHP?",
+    "o": [
+      "$cars = array[\"Volvo\", \"BMW\", \"Toyota\"];",
+      "$cars = \"Volvo\", \"BMW\", \"Toyota\";",
+      "$cars = array(\"Volvo\", \"BMW\", \"Toyota\");"
+    ],
+    "a": 2,
+    "source": "PHP"
+  },
+  {
+    "q": "The if statement is used to execute some code only if a specified condition is true.",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "PHP"
+  },
+  {
+    "q": "Which operator is used to check if two values are equal and of same data type?",
+    "o": [
+      "!=",
+      "==",
+      "=",
+      "==="
+    ],
+    "a": 3,
+    "source": "PHP"
+  },
+  {
+    "q": "What does XML stand for?",
+    "o": [
+      "eXtensible Markup Language",
+      "eXtra Modern Link",
+      "Example Markup Language",
+      "X-Markup Language"
+    ],
+    "a": 0,
+    "source": "XML"
+  },
+  {
+    "q": "There is a way of describing XML data, how?",
+    "o": [
+      "XML uses a DTD to describe the data",
+      "XML uses a description node to describe data",
+      "XML uses XSL to describe data"
+    ],
+    "a": 0,
+    "source": "XML"
+  },
+  {
+    "q": "What does DTD stand for?",
+    "o": [
+      "Dynamic Type Definition",
+      "Document Type Definition",
+      "Do The Dance",
+      "Direct Type Definition"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "Which statement is true?",
+    "o": [
+      "All XML elements must be properly closed",
+      "All XML elements must be lower case",
+      "All XML documents must have a DTD",
+      "All the statements are true"
+    ],
+    "a": 0,
+    "source": "XML"
+  },
+  {
+    "q": "Which statement is true?",
+    "o": [
+      "All the statements are true",
+      "XML elements must be properly nested",
+      "XML tags are case sensitive",
+      "XML documents must have a root tag"
+    ],
+    "a": 0,
+    "source": "XML"
+  },
+  {
+    "q": "XML preserves white spaces",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "Is it easier to process XML than HTML?",
+    "o": [
+      "No",
+      "Yes",
+      "Sometimes"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "XML elements cannot be empty",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "Which is not a correct XML element name?",
+    "o": [
+      "&lt;1dollar&gt;",
+      "&lt;p&gt;",
+      "&lt;h1&gt;",
+      "&lt;Note&gt;"
+    ],
+    "a": 0,
+    "source": "XML"
+  },
+  {
+    "q": "Which is a correct XML element name?",
+    "o": [
+      "&lt;phone number&gt;",
+      "&lt;xmldocument&gt;",
+      "&lt;7eleven&gt;",
+      "&lt;note&gt;"
+    ],
+    "a": 3,
+    "source": "XML"
+  },
+  {
+    "q": "XML attribute values must always be enclosed in quotes",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "What does XSL stand for?",
+    "o": [
+      "eXtra Style Language",
+      "eXtensible Style Language",
+      "eXpandable Style Language"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "What is a correct way of referring to a stylesheet called \"mystyle.xsl\" ?",
+    "o": [
+      "&lt;link type=\"text/xsl\" href=\"mystyle.xsl\" /&gt;",
+      "&lt;?xml-stylesheet type=\"text/xsl\" href=\"mystyle.xsl\" ?&gt;",
+      "&lt;stylesheet type=\"text/xsl\" href=\"mystyle.xsl\" /&gt;"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "For the XML parser to ignore a certain section of your XML document, which syntax is correct?",
+    "o": [
+      "&lt;xml:CDATA[ Text to be ignored ]&gt;",
+      "&lt;![CDATA[ Text to be ignored ]]&gt;",
+      "&lt;PCDATA&gt; Text to be ignored &lt;/PCDATA&gt;",
+      "&lt;CDATA&gt; Text to be ignored &lt;/CDATA&gt;"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "XML validation errors must be reported by the XML parser?",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "Which of the following DOM elements is the root element?",
+    "o": [
+      "NodeList",
+      "Element",
+      "Document",
+      "Node"
+    ],
+    "a": 2,
+    "source": "XML"
+  },
+  {
+    "q": "What is the DOM property that returns the root element?",
+    "o": [
+      "document.documentElement",
+      "document.rootElement",
+      "document.xmlRoot",
+      "document.html"
+    ],
+    "a": 0,
+    "source": "XML"
+  },
+  {
+    "q": "What is a correct syntax to create an XML HTTP Request object in modern browsers?",
+    "o": [
+      "new XMLHttpRequest()",
+      "new XMLHTTP()",
+      "new XMLHttpRequestObject()",
+      "new ActiveXObject(\"Microsoft.XMLHTTP\")"
+    ],
+    "a": 0,
+    "source": "XML"
+  },
+  {
+    "q": "The XML HTTP Request object can be used to send and receive data behind the scenes?",
+    "o": [
+      "False",
+      "True"
+    ],
+    "a": 1,
+    "source": "XML"
+  },
+  {
+    "q": "The XML DOM method loadXML() is used to load an XML document?",
+    "o": [
+      "True",
+      "False"
+    ],
+    "a": 1,
+    "source": "XML"
+  }
+]
